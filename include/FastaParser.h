@@ -31,8 +31,11 @@ public:
     // Charge le fichier FASTA, extrait les headers et séquences
     void loadFile();
 
-    // Ajoute cette méthode pour récupérer toutes les séquences
+    // récupérer toutes les séquences
     std::vector<std::string> getSequences() const;
+    
+    // calculer la taille des séquences 
+    std::vector<size_t> getSequenceSizes() const;
 };
 
 // Fin des include guards pour éviter les inclusions multiples du fichier

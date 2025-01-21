@@ -16,7 +16,13 @@ int main(int argc, char* argv[]) {  // Fonction principale, prend des arguments 
     if (parser.validateFasta()) {  // Appelle la méthode validateFasta() de l'objet parser pour valider le fichier
         std::cout << "Fichier FASTA valide.\n";  // Si le fichier est valide, affiche un message de succès
         std::cout << "Nombre de séquences : " << parser.countSequences() << "\n";  // Affiche le nombre de séquences dans le fichier
-       // std::string seq = "ACGT";  // Déclare une séquence d'ADN d'exemple (ici : "ACGT")
+       
+       // Récupération et affichage des tailles des séquences
+        std::vector<size_t> sequenceSizes = parser.getSequenceSizes();
+        for (size_t i = 0; i < sequenceSizes.size(); ++i) {
+            std::cout << "Taille de la séquence " << i + 1 << " : " << sequenceSizes[i] << "\n";
+        }
+
        
        // Récupère toutes les séquences du fichier
         std::vector<std::string> sequences = parser.getSequences();

@@ -31,21 +31,49 @@ void FastaParser::loadFile() {
     file.close();
 
     // Affiche toutes les séquences lues
-    for (const auto& seq : sequences) {
-        std::cout << "Séquence : " << seq << std::endl;  // Affiche la séquence lue
-    }
+    //for (const auto& seq : sequences) {
+    //    std::cout << "Séquence : " << seq << std::endl;  // Affiche la séquence lue
+    //}
 }
 
 bool FastaParser::validateFasta() {
     loadFile();
-    for (const auto& sequence : sequences) {
-        if (sequence.find_first_not_of("ACGTacgt") != std::string::npos) {
-            std::cerr << "Caractère invalide trouvé." << std::endl;
-            return false; // Retourne false si un caractère invalide est trouvé
+
+    // Définir les caractères valides (ACGT + ambiguïtés).
+    const std::string validChars = "ACGTacgtRYKMSWBDHVNrykmswbdhvn";
+
+    for (size_t lineNum = 0; lineNum < sequences.size(); ++lineNum) {
+        const std::string& sequence = sequences[lineNum];
+        bool isConsensus = false;
+
+        for (size_t pos = 0; pos < sequence.length(); ++pos) {
+            char c = sequence[pos];
+            if (validChars.find(c) == std::string::npos) {
+                // Caractère invalide trouvé.
+                std::cerr << "Caractère invalide trouvé à la ligne " 
+                          << lineNum + 1 << ", position " << pos + 1 
+                          << " : '" << c << "'" << std::endl;
+                return false; // Retourne false si un caractère invalide est trouvé.
+            }
+
+            // Vérifiez si c'est une lettre d'ambiguïté.
+            if (std::string("RYKMSWBDHVNrykmswbdhvn").find(c) != std::string::npos) {
+                isConsensus = true;
+            }
+        }
+
+        // Afficher le type de séquence.
+        if (isConsensus) {
+            std::cout << "Type de séquence " << lineNum + 1 << " : Séquence consensus." << std::endl;
+        } else {
+            std::cout << "Type de séquence " << lineNum + 1 << " : Séquence simple." << std::endl;
         }
     }
-    return true; // Retourne true si toutes les séquences sont valides
+
+    return true; // Retourne true si toutes les séquences sont valides.
 }
+
+
 
 size_t FastaParser::countSequences() {
         return sequences.size(); // Retourne le nombre de séquences
@@ -85,7 +113,15 @@ std::string FastaParser::getReverseComplement(const std::string& sequence) {
     return complement;
 }
 
+// la taille des séquences
 
+std::vector<size_t> FastaParser::getSequenceSizes() const {
+    std::vector<size_t> sizes;
+    for (const auto& sequence : sequences) {
+        sizes.push_back(sequence.size());
+    }
+    return sizes;
+}
 
 
 
