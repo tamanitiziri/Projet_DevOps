@@ -3,10 +3,15 @@
 
 // initialiser le constructeur et definir ma un character vide $ a la fin de mon motif 
 
-SuffixArray::SuffixArray(const std::string& inputPattern) : pattern(inputPattern + '$') {
+SuffixArray::SuffixArray(const std::string& inputPattern, bool buildSA) : pattern(inputPattern + '$') {
+   if (buildSA){
     buildSuffixArray();
-    buildLcpArray();
-    buildSuffixArrayEquivalent();
+    //buildLcpArray();
+   // buildSuffixArrayEquivalent();
+   }else{
+         buildSuffixArrayEquivalent();
+         //buildLcpArray();
+   }
 }
 
 // methode de ma table SA ********************************

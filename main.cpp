@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "SuffixArray.h"
+#include <chrono>  // Pour mesurer le temps d'exécution
 
 // Fonction pour exécuter des tests unitaires
 void runTests() {
@@ -67,8 +68,34 @@ void runTests() {
     }
 }
 
+
+//* teste des performances suffixArray vs suffixArrayEquivalent***********************//
+
+
+void comparePerformance() {
+
+    std::string text = "banana";
+
+    // Mesurer le temps pour la méthode actuelle
+    auto start1 = std::chrono::high_resolution_clock::now();
+    SuffixArray sa1(text);
+    auto end1 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed1 = end1 - start1;
+    std::cout << "Temps pour la méthode actuelle : " << elapsed1.count() << " secondes" << std::endl;
+
+    // Mesurer le temps pour la méthode équivalente
+    auto start2 = std::chrono::high_resolution_clock::now();
+    SuffixArray sa2(text, false);
+    auto end2 = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double> elapsed2 = end2 - start2;
+    std::cout << "Temps pour la méthode équivalente : " << elapsed2.count() << " secondes" << std::endl;
+}
+
 int main() {
     // Exécuter les tests unitaires
     runTests();
+
+    // Comparer les performances
+    comparePerformance();
     return 0;
 }

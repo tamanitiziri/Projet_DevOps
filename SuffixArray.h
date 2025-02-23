@@ -21,8 +21,8 @@ class SuffixArray{
    // bool compareSuffixes(int i, int j, const std::string& s);
 
     public:
-    //le constructure de ma classe
-    SuffixArray(const std::string& inputPattern);
+    //le constructure de ma classe**************
+    SuffixArray(const std::string& inputPattern, bool buildSA = true );
 
     //getter de SA
     const std::vector<int>& getSuffixArray() const;
