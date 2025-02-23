@@ -9,7 +9,7 @@ void runTests() {
     //ordre lexicographique : $, a, ana, anana, banana, na, nana
     SuffixArray sa("banana");  //sa est une instance de la classe SuffixArray
 
-    // Test de la table des suffixes
+    // Test de la table des suffixes **************************
     std::vector<int> expectedSA = {6, 5, 3, 1, 0, 4, 2};
     if (sa.getSuffixArray() == expectedSA) {
         std::cout << "Test de la table des suffixes réussi !" << std::endl;
@@ -24,7 +24,24 @@ void runTests() {
     } else {
         std::cout << "Test de la table des suffixes échoué !" << std::endl;
     }
+  //******************sa équivalente ************** */ 
 
+  // Test de la table des suffixes équivalente
+  //sa.buildSuffixArrayEquivalent();
+  if (sa.getSuffixArrayEquivalent() == expectedSA) {
+      std::cout << "Test de la table des suffixes équivalente réussi !" << std::endl;
+  } else {
+      std::cout << "Test de la table des suffixes équivalente échoué !" << std::endl;
+  }
+  //afficher la table des suffixes équivalente
+    std::vector<int> suffixArrayEquivalent = sa.getSuffixArrayEquivalent();
+    std::cout << "Suffix Array Equivalent: ";
+    for (int i : suffixArrayEquivalent) { // pour chaque element de la table suffixArrayEquivalent
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+ //************************************************ */   
     // Test de la table LCP
     std::vector<int> expectedLCP = {0, 1, 3, 0, 0, 2, 0};
     if (sa.getLcpArray() == expectedLCP) {

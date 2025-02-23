@@ -8,12 +8,17 @@ class SuffixArray{
     std::string pattern;  //mon motif 
     std::vector<int> suffixArray;   // ma table SA
     std::vector<int> lcpArray;     // ma table lcp
+    std::vector<int> SuffixArrayEquivalent; // ma table SA equivalent ******
 
     //contruire SA
     void buildSuffixArray();
 
     //contruire lcp
     void buildLcpArray();
+
+    //contruire SA equivalent *********************
+    void buildSuffixArrayEquivalent();
+   // bool compareSuffixes(int i, int j, const std::string& s);
 
     public:
     //le constructure de ma classe
@@ -25,8 +30,12 @@ class SuffixArray{
     //getter de lcp
     const std::vector<int>& getLcpArray() const;
 
+    //getter de SA equivalent **********************
+    const std::vector<int>& getSuffixArrayEquivalent() const;
+
     //rechrache d'un facteur dans ma table SA (avce une methode déchotomique) 
     bool search(const std::string& factor) const;
+
 
 };
 

@@ -6,6 +6,7 @@
 SuffixArray::SuffixArray(const std::string& inputPattern) : pattern(inputPattern + '$') {
     buildSuffixArray();
     buildLcpArray();
+    buildSuffixArrayEquivalent();
 }
 
 // methode de ma table SA ********************************
@@ -96,4 +97,33 @@ bool SuffixArray::search(const std::string& motif) const{
 
     return false; // motif non trouvé 
 }
+
+// ***************Amelioration de la fonction de ta table SA************************************
+
+bool compareSuffixes(int i, int j, const std::string& s) {
+    return s.substr(i) < s.substr(j);
+}
+
+void SuffixArray::buildSuffixArrayEquivalent() {
+    int n = pattern.length();
+    std::vector<int> indices(n);
+
+    // Initialiser le vecteur d'indices
+    for (int i = 0; i < n; ++i) {
+        indices[i] = i;
+    }
+
+    // Trier les indices en utilisant la fonction de comparaison personnalisée
+    std::sort(indices.begin(), indices.end(), [this](int i, int j) {
+        return compareSuffixes(i, j, pattern);
+    });
+
+    // Mettre à jour la table des suffixes
+    SuffixArrayEquivalent = indices;
+}
+
+//getter de SA equivalent**************
+    const std::vector<int>& SuffixArray::getSuffixArrayEquivalent() const{
+        return SuffixArrayEquivalent;
+    }
     
