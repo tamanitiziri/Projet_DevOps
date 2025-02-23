@@ -67,3 +67,30 @@ void SuffixArray::buildSuffixArray(){
     const std::vector<int>& SuffixArray::getLcpArray() const{
         return lcpArray;
     }
+    
+//chercher un motif dans la table des suffixes (recherghe dichotomique)
+bool SuffixArray::search(const std::string& motif) const{
+    int left = 0; 
+    int right = suffixArray.size() - 1 ; 
+    int res;
+    int mid;
+
+    while(left <= right){
+        mid = left + (right - left) / 2;  // calculer le milieu de sa 
+
+           //faire la comparaison entre le modtif et le suffixe de milieu
+        res = motif.compare(suffixArray[mid], motif.length(), motif);
+
+        if (res == 0){ /// motif trouvé 
+            return true;
+        } else if (res < 0){ // le motif plus petit que le suffixe de milieu
+            right = mid - 1 ;  // chercher dans la partie gauche 
+        } else{
+            left = mid + 1; // chercher dans la partie droite 
+        }
+
+    }
+
+    return false; // motif non trouvé 
+}
+    
