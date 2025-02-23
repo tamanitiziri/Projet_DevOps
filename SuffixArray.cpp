@@ -39,5 +39,31 @@ void SuffixArray::buildSuffixArray(){
         for(int i = 0; i < n; i++){
             rank[suffixArray[i]]= i;
         }
+
         int k = 0;
+        for(int i=0; i<n; i++){
+            if (rank[i] ==  n-1) {
+                k = 0;  //si le rang de est le dernier suffixe alors en reinitialise la longueur de comparaisont k à 0
+                continue;
+            }
+            int j = suffixArray[rank[i]+1]; // le suffixe suivant 
+            while(i+k <n && j+k <n && pattern[i+k] == pattern[j+k]){
+                k++; //incrementre si y a une correspondance 
+            }
+            lcpArray[rank[i]] = k; //stocker la longueur de correspondance
+            if (k > 0){
+                k--;  // décrémenter k pour optimiser le calcul de la LCP pour le suffixe suivant
+                //(les k-1 char identifies sont identique dans les autres suffuxes -order lexicographique )
+            }
+
+        }
+    }
+    //methode gitter de SA 
+    const std::vector<int>& SuffixArray::getSuffixArray() const{
+        return suffixArray;
+    }
+
+    //get ma table lcp
+    const std::vector<int>& SuffixArray::getLcpArray() const{
+        return lcpArray;
     }
