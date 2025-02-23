@@ -36,17 +36,18 @@ void runTests() {
         for (int i : lcpArray) { // pour chaque element de la table 
             std::cout << i << " ";
         }
+        std::cout << std::endl;
 
     } else {
         std::cout << "Test de la table LCP échoué !" << std::endl;
     }
 
-    // Test de recherche
-    //if (sa.search("ana")) {
-     // std::cout << "Test de recherche réussi !" << std::endl;
-    //} else {
-     //  std::cout << "Test de recherche échoué !" << std::endl;
-    //}
+     //Test de recherche
+    if (sa.search("ana")) {
+      std::cout << "Test de recherche réussi !" << std::endl;
+    } else {
+      std::cout << "Test de recherche échoué !" << std::endl;
+    }
 }
 
 int main() {

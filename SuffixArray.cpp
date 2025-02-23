@@ -72,14 +72,17 @@ void SuffixArray::buildSuffixArray(){
 bool SuffixArray::search(const std::string& motif) const{
     int left = 0; 
     int right = suffixArray.size() - 1 ; 
-    int res;
+    int res , suffixPos;
     int mid;
 
     while(left <= right){
         mid = left + (right - left) / 2;  // calculer le milieu de sa 
 
-           //faire la comparaison entre le modtif et le suffixe de milieu
-        res = motif.compare(suffixArray[mid], motif.length(), motif);
+        suffixPos = suffixArray[mid]; // Position du suffixe dans la chaîne d'origine
+        std::string suffix = pattern.substr(suffixPos); // Extraire le suffixe à partir de cette position dans le motif d'origne
+        
+        // Comparer le motif avec le suffixe
+        int res = motif.compare(0, motif.length(), suffix, 0, motif.length());
 
         if (res == 0){ /// motif trouvé 
             return true;
