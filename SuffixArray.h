@@ -2,6 +2,7 @@
 #define SUFFIXARRAY_H
 #include <string>  // Pour utiliser std::string (manipulation des chaînes de caractères)
 #include <vector>
+#include <stdexcept>  // Pour utiliser std::invalid_argument (gestion des erreurs)
 
 // doxygen documentation
 /**
@@ -61,7 +62,7 @@ class SuffixArray{
     int countOccurrences(const std::string& motif) const;
 
      // Retourne le i-ème facteur de longueur k de la séquence
-    // std::string getFactor(int i, int k) const;
+     std::string getFactor(int i, int k) const;
 
 
 };

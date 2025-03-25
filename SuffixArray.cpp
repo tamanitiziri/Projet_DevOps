@@ -1,5 +1,5 @@
 #include "SuffixArray.h"
-#include <algorithm>  // Pour utiliser std::sort
+#include <algorithm>  // Pour utiliser std::sort>
 
 // initialiser le constructeur et definir ma un character vide $ a la fin de mon motif 
 /*
@@ -195,6 +195,14 @@ int SuffixArray::countOccurrences(const std::string& text) const {
     int lower = lowerBound(text);
     int upper = upperBound(text);
     return upper - lower;
+}
+
+//fonction getfactor
+std::string SuffixArray::getFactor(int i, int k) const {
+    if (i + k > text.length() - 1) {
+        throw std::out_of_range("Index out of range");
+    }
+    return text.substr(i, k);
 }
 
     

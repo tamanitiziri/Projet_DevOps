@@ -123,6 +123,13 @@ int main() {
     int count = sa.countOccurrences(pattern);
     
     std::cout << "Le motif " << pattern << " apparaît " << count << " fois." << std::endl;
+
+    //tester getFactor
+    int i=5;
+    int k=10;
+    std::string factor = sa.getFactor(i, k);
+    std::cout << "le facteur à l'indice : "<<i<<" de longueur "<< k <<" est: " << factor << std::endl;
     
     return 0;
 }
+
