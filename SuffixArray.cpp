@@ -2,28 +2,36 @@
 #include <algorithm>  // Pour utiliser std::sort
 
 // initialiser le constructeur et definir ma un character vide $ a la fin de mon motif 
-
-SuffixArray::SuffixArray(const std::string& inputPattern, bool buildSA) : pattern(inputPattern + '$') {
+/*
+SuffixArray::SuffixArray(const std::string& inputtext, bool buildSA) : text(inputtext + '$') {
    if (buildSA){
-    buildSuffixArray();
+    buildSuffixArray(); // chrono
     //buildLcpArray();
-   // buildSuffixArrayEquivalent();
+    //buildSuffixArrayEquivalent();
    }else{
-         buildSuffixArrayEquivalent();
+         buildSuffixArrayEquivalent(); // chrono
          //buildLcpArray();
    }
 }
+*/
+// Constructeur
+SuffixArray::SuffixArray(const std::string& inputText) : text(inputText + '$') {
+    buildSuffixArray(); // Construire la table des suffixes
+    buildLcpArray();    // Construire la table LCP (facultatif)
+}
+
 
 // methode de ma table SA ********************************
+
 void SuffixArray::buildSuffixArray(){
-    int n = pattern.length(); //ma taille est tjr positif
+    int n = text.length(); //ma taille est tjr positif
 
     //declarre un vecteur de pair pour stocker les indice et les siffixes 
     std::vector<std::pair<std::string, int>> suffixes;
 
     //remplire mon vecteur suffixes 
     for(int i = 0; i < n; i++){
-        suffixes.push_back({pattern.substr(i), i}); // stocker mon suffixe pattern.substr(i) et ca pos i
+        suffixes.push_back({text.substr(i), i}); // stocker mon suffixe text.substr(i) et ca pos i
     }
 
     //trier mes suffixes avec l'ordre lexicographique
@@ -37,7 +45,7 @@ void SuffixArray::buildSuffixArray(){
 } 
  //* construire ma table  lcp *****************************
     void SuffixArray::buildLcpArray(){
-        int n =  pattern.length();  // la taille de mon motif 
+        int n =  text.length();  // la taille de mon motif 
         lcpArray.resize(n, 0); // redimentionner ma table lcp avec la taille de mon motif  et initialiser a 0
         std::vector<int> rank(n, 0); // il va contenir les rangs(L'indice de table suffixarray) des suffixes dans la table SA
 
@@ -53,7 +61,7 @@ void SuffixArray::buildSuffixArray(){
                 continue;
             }
             int j = suffixArray[rank[i]+1]; // le suffixe suivant 
-            while(i+k <n && j+k <n && pattern[i+k] == pattern[j+k]){
+            while(i+k <n && j+k <n && text[i+k] == text[j+k]){
                 k++; //incrementre si y a une correspondance 
             }
             lcpArray[rank[i]] = k; //stocker la longueur de correspondance
@@ -74,7 +82,7 @@ void SuffixArray::buildSuffixArray(){
         return lcpArray;
     }
     
-//chercher un motif dans la table des suffixes (recherghe dichotomique)
+   //chercher un motif dans la table des suffixes (recherghe dichotomique)
 bool SuffixArray::search(const std::string& motif) const{
     int left = 0; 
     int right = suffixArray.size() - 1 ; 
@@ -85,7 +93,7 @@ bool SuffixArray::search(const std::string& motif) const{
         mid = left + (right - left) / 2;  // calculer le milieu de sa 
 
         suffixPos = suffixArray[mid]; // Position du suffixe dans la chaîne d'origine
-        std::string suffix = pattern.substr(suffixPos); // Extraire le suffixe à partir de cette position dans le motif d'origne
+        std::string suffix = text.substr(suffixPos); // Extraire le suffixe à partir de cette position dans le motif d'origne
         
         // Comparer le motif avec le suffixe
         int res = motif.compare(0, motif.length(), suffix, 0, motif.length());
@@ -104,13 +112,17 @@ bool SuffixArray::search(const std::string& motif) const{
 }
 
 // ***************Amelioration de la fonction de ta table SA************************************
+//l'amelioration ici est de construire une table SA equivalent
+//cette table est construite en utilisant la fonction de comparaison personnalisée qui compare les suffixes de la chaîne d'origine
+//au lieu de comparer les suffixes de la chaîne de caractères
+//cette table est utilisée pour la recherche de motifs dans la chaîne d'origine
 
 bool compareSuffixes(int i, int j, const std::string& s) {
     return s.substr(i) < s.substr(j);
 }
 
 void SuffixArray::buildSuffixArrayEquivalent() {
-    int n = pattern.length();
+    int n = text.length();
     std::vector<int> indices(n);
 
     // Initialiser le vecteur d'indices
@@ -120,7 +132,7 @@ void SuffixArray::buildSuffixArrayEquivalent() {
 
     // Trier les indices en utilisant la fonction de comparaison personnalisée
     std::sort(indices.begin(), indices.end(), [this](int i, int j) {
-        return compareSuffixes(i, j, pattern);
+        return compareSuffixes(i, j, text);
     });
 
     // Mettre à jour la table des suffixes
@@ -131,4 +143,58 @@ void SuffixArray::buildSuffixArrayEquivalent() {
     const std::vector<int>& SuffixArray::getSuffixArrayEquivalent() const{
         return SuffixArrayEquivalent;
     }
+
+//get lowerBound
+int  SuffixArray::lowerBound(const std::string& motif) const{
+    int  left = 0;
+    int  right = suffixArray.size()-1; //-1 pour ne pas calculer le $ a la fin de mon motif
+    int  result = suffixArray.size(); //initialiser le resultat a la taille de ma table SA
+    
+    while(left <= right){
+        int  mid = left + (right - left) / 2; //calculer le milieu
+        int  cmp =text.compare(suffixArray[mid], motif.length(), motif); //comparer le motif avec le suffixe de milieu
+
+        if(cmp >= 0){
+            result = mid; //stocker le resultat
+            right = mid - 1; //chercher dans la partie gauche
+        }else{
+            left = mid + 1; //chercher dans la partie droite
+        }   
+
+    }
+    return result;
+}
+
+//get upperBound
+int SuffixArray::upperBound(const std::string& motif) const{
+        int  left = 0;
+        int  right = suffixArray.size()-1; //-1 pour ne pas calculer le $ a la fin de mon motif
+        int  result = suffixArray.size(); //initialiser le resultat a la taille de ma table SA
+        
+        while(left <= right){
+            int  mid = left + (right - left) / 2; //calculer le milieu
+            int  cmp =text.compare(suffixArray[mid], motif.length(), motif); //comparer le motif avec le suffixe de milieu
+    
+            if(cmp > 0){
+                result = mid; //stocker le resultat
+                right = mid - 1; //chercher dans la partie gauche
+            }else{
+                left = mid + 1; //chercher dans la partie droite
+            }   
+    
+        }
+        return result; 
+}
+
+
+// Retourne le nombre d'occurrences du motif
+int SuffixArray::countOccurrences(const std::string& text) const {
+    if (text.empty()) {
+        return 0;
+    }
+    int lower = lowerBound(text);
+    int upper = upperBound(text);
+    return upper - lower;
+}
+
     
