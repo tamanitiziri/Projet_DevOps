@@ -9,6 +9,22 @@ void testFastaParser(const std::string& filePath, const std::string& description
     if (parser.validateFasta()) {
         std::cout << "Fichier FASTA valide.\n";
         std::cout << "Nombre de sequences: " << parser.countSequences() << "\n";
+        // Affichage du type de séquence
+        switch (parser.getSequenceType(parser.getSequences()[0])) {
+            case FastaParser::SequenceType::DNA:
+                std::cout << "Type de sequence: ADN\n";
+                break;
+            case FastaParser::SequenceType::RNA:
+                std::cout << "Type de sequence: ARN\n";
+                break;
+            case FastaParser::SequenceType::AA:
+                std::cout << "Type de sequence: Acides Aminés\n";
+                break;
+            case FastaParser::SequenceType::UNKNOWN:
+                std::cout << "Type de sequence: Inconnu\n";
+                break;
+        }
+        
         
         auto sizes = parser.getSequenceSizes();
         for (size_t i = 0; i < sizes.size(); ++i) {
