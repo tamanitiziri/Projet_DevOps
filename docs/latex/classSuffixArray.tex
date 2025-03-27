@@ -1,0 +1,235 @@
+\doxysection{Suffix\+Array Class Reference}
+\hypertarget{classSuffixArray}{}\label{classSuffixArray}\index{SuffixArray@{SuffixArray}}
+
+
+{\ttfamily \#include $<$Suffix\+Array.\+h$>$}
+
+
+
+Collaboration diagram for Suffix\+Array\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{classSuffixArray__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSuffixArray_a350739037a9555ba3e95c90d9fd2c8f8}{Suffix\+Array}} (const std\+::string \&inputtext)
+\item 
+const std\+::vector$<$ int $>$ \& \mbox{\hyperlink{classSuffixArray_aa5b3b5c3cfd2dd249cb2425c9f2d39a1}{get\+Suffix\+Array}} () const
+\item 
+const std\+::vector$<$ int $>$ \& \mbox{\hyperlink{classSuffixArray_a7483bd364ba1bd07697e17a49722da55}{get\+Lcp\+Array}} () const
+\item 
+const std\+::vector$<$ int $>$ \& \mbox{\hyperlink{classSuffixArray_aa84fe4c7cbdea5a001400239fccc9c79}{get\+Suffix\+Array\+Equivalent}} () const
+\item 
+bool \mbox{\hyperlink{classSuffixArray_ae2123dff54429e11a5215f2d935456e8}{search}} (const std\+::string \&factor) const
+\item 
+int \mbox{\hyperlink{classSuffixArray_aeff340172fb57eb96f04e5eba3b32d60}{count\+Occurrences}} (const std\+::string \&motif) const
+\item 
+std\+::string \mbox{\hyperlink{classSuffixArray_a5d457d0cf2e160530ebf604fc624b584}{get\+Factor}} (int i, int k) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSuffixArray_a1aa6cb602afd1ac9807b988c9cf03dee}{build\+Suffix\+Array}} ()
+\item 
+void \mbox{\hyperlink{classSuffixArray_a28d04eca588aee26d29b4bd2231946c9}{build\+Lcp\+Array}} ()
+\item 
+void \mbox{\hyperlink{classSuffixArray_ae4be1a9161b78595dfdf092abc0e29b6}{build\+Suffix\+Array\+Equivalent}} ()
+\item 
+int \mbox{\hyperlink{classSuffixArray_a1046a3acae28268d81cefb3b565a1e50}{lower\+Bound}} (const std\+::string \&\mbox{\hyperlink{classSuffixArray_a8c24725c82331798b7f2da16cb9833e2}{text}}) const
+\item 
+int \mbox{\hyperlink{classSuffixArray_a5292d2e08080f4e15927fedd9060f2fa}{upper\+Bound}} (const std\+::string \&\mbox{\hyperlink{classSuffixArray_a8c24725c82331798b7f2da16cb9833e2}{text}}) const
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classSuffixArray_a8c24725c82331798b7f2da16cb9833e2}{text}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classSuffixArray_a5e84c167cb8518376aa6f95d16701e7e}{suffix\+Array}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classSuffixArray_a067572f787290e2d77ecabec607ee802}{lcp\+Array}}
+\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{classSuffixArray_a5a8ec74ce3db24c161dabe9c01ec1e19}{Suffix\+Array\+Equivalent}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe \doxylink{classSuffixArray}{Suffix\+Array}
+
+Cette classe permet de construire un tableau de suffixes (SA) et un tableau de valeurs de préfixes les plus longs (LCP) pour une chaîne de caractères donnée. Elle permet également de rechercher un facteur dans la chaîne de caractères. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSuffixArray_a350739037a9555ba3e95c90d9fd2c8f8}\label{classSuffixArray_a350739037a9555ba3e95c90d9fd2c8f8} 
+\index{SuffixArray@{SuffixArray}!SuffixArray@{SuffixArray}}
+\index{SuffixArray@{SuffixArray}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{SuffixArray()}{SuffixArray()}}
+{\footnotesize\ttfamily Suffix\+Array\+::\+Suffix\+Array (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{inputtext }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSuffixArray_a350739037a9555ba3e95c90d9fd2c8f8_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSuffixArray_a28d04eca588aee26d29b4bd2231946c9}\label{classSuffixArray_a28d04eca588aee26d29b4bd2231946c9} 
+\index{SuffixArray@{SuffixArray}!buildLcpArray@{buildLcpArray}}
+\index{buildLcpArray@{buildLcpArray}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{buildLcpArray()}{buildLcpArray()}}
+{\footnotesize\ttfamily void Suffix\+Array\+::build\+Lcp\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSuffixArray_a28d04eca588aee26d29b4bd2231946c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSuffixArray_a1aa6cb602afd1ac9807b988c9cf03dee}\label{classSuffixArray_a1aa6cb602afd1ac9807b988c9cf03dee} 
+\index{SuffixArray@{SuffixArray}!buildSuffixArray@{buildSuffixArray}}
+\index{buildSuffixArray@{buildSuffixArray}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{buildSuffixArray()}{buildSuffixArray()}}
+{\footnotesize\ttfamily void Suffix\+Array\+::build\+Suffix\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSuffixArray_a1aa6cb602afd1ac9807b988c9cf03dee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSuffixArray_ae4be1a9161b78595dfdf092abc0e29b6}\label{classSuffixArray_ae4be1a9161b78595dfdf092abc0e29b6} 
+\index{SuffixArray@{SuffixArray}!buildSuffixArrayEquivalent@{buildSuffixArrayEquivalent}}
+\index{buildSuffixArrayEquivalent@{buildSuffixArrayEquivalent}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{buildSuffixArrayEquivalent()}{buildSuffixArrayEquivalent()}}
+{\footnotesize\ttfamily void Suffix\+Array\+::build\+Suffix\+Array\+Equivalent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSuffixArray_aeff340172fb57eb96f04e5eba3b32d60}\label{classSuffixArray_aeff340172fb57eb96f04e5eba3b32d60} 
+\index{SuffixArray@{SuffixArray}!countOccurrences@{countOccurrences}}
+\index{countOccurrences@{countOccurrences}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{countOccurrences()}{countOccurrences()}}
+{\footnotesize\ttfamily int Suffix\+Array\+::count\+Occurrences (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{motif }\end{DoxyParamCaption}) const}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSuffixArray_aeff340172fb57eb96f04e5eba3b32d60_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=320pt]{classSuffixArray_aeff340172fb57eb96f04e5eba3b32d60_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSuffixArray_a5d457d0cf2e160530ebf604fc624b584}\label{classSuffixArray_a5d457d0cf2e160530ebf604fc624b584} 
+\index{SuffixArray@{SuffixArray}!getFactor@{getFactor}}
+\index{getFactor@{getFactor}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{getFactor()}{getFactor()}}
+{\footnotesize\ttfamily std\+::string Suffix\+Array\+::get\+Factor (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{k }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=278pt]{classSuffixArray_a5d457d0cf2e160530ebf604fc624b584_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSuffixArray_a7483bd364ba1bd07697e17a49722da55}\label{classSuffixArray_a7483bd364ba1bd07697e17a49722da55} 
+\index{SuffixArray@{SuffixArray}!getLcpArray@{getLcpArray}}
+\index{getLcpArray@{getLcpArray}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{getLcpArray()}{getLcpArray()}}
+{\footnotesize\ttfamily const std\+::vector$<$ int $>$ \& Suffix\+Array\+::get\+Lcp\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classSuffixArray_aa5b3b5c3cfd2dd249cb2425c9f2d39a1}\label{classSuffixArray_aa5b3b5c3cfd2dd249cb2425c9f2d39a1} 
+\index{SuffixArray@{SuffixArray}!getSuffixArray@{getSuffixArray}}
+\index{getSuffixArray@{getSuffixArray}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{getSuffixArray()}{getSuffixArray()}}
+{\footnotesize\ttfamily const std\+::vector$<$ int $>$ \& Suffix\+Array\+::get\+Suffix\+Array (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classSuffixArray_aa84fe4c7cbdea5a001400239fccc9c79}\label{classSuffixArray_aa84fe4c7cbdea5a001400239fccc9c79} 
+\index{SuffixArray@{SuffixArray}!getSuffixArrayEquivalent@{getSuffixArrayEquivalent}}
+\index{getSuffixArrayEquivalent@{getSuffixArrayEquivalent}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{getSuffixArrayEquivalent()}{getSuffixArrayEquivalent()}}
+{\footnotesize\ttfamily const std\+::vector$<$ int $>$ \& Suffix\+Array\+::get\+Suffix\+Array\+Equivalent (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classSuffixArray_a1046a3acae28268d81cefb3b565a1e50}\label{classSuffixArray_a1046a3acae28268d81cefb3b565a1e50} 
+\index{SuffixArray@{SuffixArray}!lowerBound@{lowerBound}}
+\index{lowerBound@{lowerBound}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{lowerBound()}{lowerBound()}}
+{\footnotesize\ttfamily int Suffix\+Array\+::lower\+Bound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSuffixArray_a1046a3acae28268d81cefb3b565a1e50_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSuffixArray_ae2123dff54429e11a5215f2d935456e8}\label{classSuffixArray_ae2123dff54429e11a5215f2d935456e8} 
+\index{SuffixArray@{SuffixArray}!search@{search}}
+\index{search@{search}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily bool Suffix\+Array\+::search (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{factor }\end{DoxyParamCaption}) const}
+
+motif trouvéHere is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{classSuffixArray_ae2123dff54429e11a5215f2d935456e8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classSuffixArray_a5292d2e08080f4e15927fedd9060f2fa}\label{classSuffixArray_a5292d2e08080f4e15927fedd9060f2fa} 
+\index{SuffixArray@{SuffixArray}!upperBound@{upperBound}}
+\index{upperBound@{upperBound}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{upperBound()}{upperBound()}}
+{\footnotesize\ttfamily int Suffix\+Array\+::upper\+Bound (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{text }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSuffixArray_a5292d2e08080f4e15927fedd9060f2fa_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classSuffixArray_a067572f787290e2d77ecabec607ee802}\label{classSuffixArray_a067572f787290e2d77ecabec607ee802} 
+\index{SuffixArray@{SuffixArray}!lcpArray@{lcpArray}}
+\index{lcpArray@{lcpArray}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{lcpArray}{lcpArray}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Suffix\+Array\+::lcp\+Array\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSuffixArray_a5e84c167cb8518376aa6f95d16701e7e}\label{classSuffixArray_a5e84c167cb8518376aa6f95d16701e7e} 
+\index{SuffixArray@{SuffixArray}!suffixArray@{suffixArray}}
+\index{suffixArray@{suffixArray}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{suffixArray}{suffixArray}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Suffix\+Array\+::suffix\+Array\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSuffixArray_a5a8ec74ce3db24c161dabe9c01ec1e19}\label{classSuffixArray_a5a8ec74ce3db24c161dabe9c01ec1e19} 
+\index{SuffixArray@{SuffixArray}!SuffixArrayEquivalent@{SuffixArrayEquivalent}}
+\index{SuffixArrayEquivalent@{SuffixArrayEquivalent}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{SuffixArrayEquivalent}{SuffixArrayEquivalent}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ Suffix\+Array\+::\+Suffix\+Array\+Equivalent\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classSuffixArray_a8c24725c82331798b7f2da16cb9833e2}\label{classSuffixArray_a8c24725c82331798b7f2da16cb9833e2} 
+\index{SuffixArray@{SuffixArray}!text@{text}}
+\index{text@{text}!SuffixArray@{SuffixArray}}
+\doxysubsubsection{\texorpdfstring{text}{text}}
+{\footnotesize\ttfamily std\+::string Suffix\+Array\+::text\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{SuffixArray_8h}{Suffix\+Array.\+h}}\item 
+\mbox{\hyperlink{SuffixArray_8cpp}{Suffix\+Array.\+cpp}}\end{DoxyCompactItemize}

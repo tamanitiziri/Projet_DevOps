@@ -131,6 +131,14 @@ void SuffixArray::buildSuffixArrayEquivalent() {
     }
 
     // Trier les indices en utilisant la fonction de comparaison personnalisée
+    /**
+     * Ici la fonction de comparaison personnalisée compare les suffixes de la chaîne d'origine
+     * au lieu de comparer les suffixes de la chaîne de caractères
+     * elle est de complexité O(nlogn) càd la diffrence avec l'utilisation e sorte sns modifie la fonction lambda
+     * est que la fonction de comparaison personnalisée compare les suffixes de la chaîne d'origine
+     * au lieu de comparer les suffixes de la chaîne de caractères qui d'une complexité O(n^2logn)   
+     * 
+     */
     std::sort(indices.begin(), indices.end(), [this](int i, int j) {
         return compareSuffixes(i, j, text);
     });
@@ -145,6 +153,10 @@ void SuffixArray::buildSuffixArrayEquivalent() {
     }
 
 //get lowerBound
+/**
+ * cette fonction retourne la position du premier suffixe dans la table des suffixes qui est supérieur ou égal à un motif donné.
+ * elle est de complexité O(logn)
+ */
 int  SuffixArray::lowerBound(const std::string& motif) const{
     int  left = 0;
     int  right = suffixArray.size()-1; //-1 pour ne pas calculer le $ a la fin de mon motif
@@ -166,6 +178,10 @@ int  SuffixArray::lowerBound(const std::string& motif) const{
 }
 
 //get upperBound
+/**
+ * cette fonction retourne la position du premier suffixe dans la table des suffixes qui est strictement supérieur à un motif donné.
+ * elle est de complexité O(logn)
+ */
 int SuffixArray::upperBound(const std::string& motif) const{
         int  left = 0;
         int  right = suffixArray.size()-1; //-1 pour ne pas calculer le $ a la fin de mon motif
@@ -188,6 +204,13 @@ int SuffixArray::upperBound(const std::string& motif) const{
 
 
 // Retourne le nombre d'occurrences du motif
+/**
+ * cette fonction retourne le nombre d'occurrences du motif dans la chaîne d'origine.
+ * elle est de complexité O(logn)
+ * l'utlisation des deux fonctions lowerBound et upperBound permet de calculer le nombre d'occurrences du motif permet 
+ * de calculer le nombre d'occurrences du motif dans la chaîne d'origine en utilisant la table des suffixes.
+ * la complexité spaciale est de O(1) car on utilise la table des suffixes déja calculer pour calculer le nombre d'occurrences du motif.
+ */
 int SuffixArray::countOccurrences(const std::string& text) const {
     if (text.empty()) {
         return 0;

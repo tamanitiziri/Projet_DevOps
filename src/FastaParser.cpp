@@ -15,7 +15,7 @@ void FastaParser::loadFile() {
     std::string line, currentSequence;
     while (std::getline(file, line)) {
         if (line.empty()) continue;
-        if (line[0] == '>') { // ligne d'entête de séquence
+        if (line[0] == '>' || line[0] == ';') { // ligne d'entête de séquence
             headers.push_back(line);
             if (!currentSequence.empty()) {
                 sequences.push_back(currentSequence);
@@ -39,6 +39,12 @@ void FastaParser::loadFile() {
 bool FastaParser::validateFasta() {
     loadFile();
 
+ if (sequences.empty()) {
+        std::cerr << "Aucune séquence valide trouvée." << std::endl;
+        return false;
+    }
+
+else{
     // Définir les caractères valides (ACGT + ambiguïtés).
     const std::string validChars = "ACGTacgtRYKMSWBDHVNrykmswbdhvn";
 
@@ -71,6 +77,8 @@ bool FastaParser::validateFasta() {
     }
 
     return true; // Retourne true si toutes les séquences sont valides.
+
+}
 }
 
 

@@ -1,0 +1,13 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,79,60,104"/>
+<area shape="rect" id="Node000002" href="$classSuffixArray.html#aeff340172fb57eb96f04e5eba3b32d60" title=" " alt="" coords="108,29,325,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,79,107,63,139,55,141,60,109,69,61,84"/>
+<area shape="rect" id="Node000005" href="$classSuffixArray.html#a5d457d0cf2e160530ebf604fc624b584" title=" " alt="" coords="136,79,297,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="60,89,123,89,123,94,60,94"/>
+<area shape="rect" id="Node000006" href="$classSuffixArray.html#ae2123dff54429e11a5215f2d935456e8" title=" " alt="" coords="145,128,289,153"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="61,98,109,113,145,122,144,127,107,118,59,103"/>
+<area shape="rect" id="Node000003" href="$classSuffixArray.html#a1046a3acae28268d81cefb3b565a1e50" title=" " alt="" coords="373,5,552,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,29,359,25,360,31,326,34"/>
+<area shape="rect" id="Node000004" href="$classSuffixArray.html#a5292d2e08080f4e15927fedd9060f2fa" title=" " alt="" coords="373,55,552,80"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="326,51,360,54,359,59,325,56"/>
+</map>
