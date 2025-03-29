@@ -1,0 +1,161 @@
+\doxysection{Fasta\+Parser Class Reference}
+\hypertarget{classFastaParser}{}\label{classFastaParser}\index{FastaParser@{FastaParser}}
+
+
+{\ttfamily \#include $<$Fasta\+Parser.\+h$>$}
+
+
+
+Collaboration diagram for Fasta\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{classFastaParser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590}{Sequence\+Type}} \{ \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590a1890a1c2c4d17ea9f5a81f3057b36e55}{DNA}}
+, \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590ac51be27126f41988e02c8e489a9592a5}{RNA}}
+, \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590a18df40da5c89f81ae6e84cd88d2cdaf2}{AA}}
+, \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590ae8b03d25a90632cd7269aff50c715aa1}{UNKNOWN}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFastaParser_adb76fd007f42456abacbbaa0e4e00e5b}{Fasta\+Parser}} (const std\+::string \&\mbox{\hyperlink{classFastaParser_a0ef338e11f489524d2db03562f6786c7}{file\+Path}})
+\item 
+bool \mbox{\hyperlink{classFastaParser_a404a8a76af7506436ee4f9b2ed5976f3}{load\+File}} ()
+\item 
+bool \mbox{\hyperlink{classFastaParser_a6443857ed1ae1cf4a6a94e23eb3472be}{validate\+Fasta}} ()
+\item 
+size\+\_\+t \mbox{\hyperlink{classFastaParser_a51374ddd5438917ac643182dc59c6ca1}{count\+Sequences}} ()
+\item 
+std\+::string \mbox{\hyperlink{classFastaParser_a81167409534b2fb07356961b003334bf}{get\+Reverse\+Complement}} (const std\+::string \&sequence)
+\item 
+const std\+::vector$<$ std\+::string $>$ \& \mbox{\hyperlink{classFastaParser_abd28223c8bcf24fe9e83b4f905510661}{get\+Sequences}} () const
+\item 
+std\+::vector$<$ size\+\_\+t $>$ \mbox{\hyperlink{classFastaParser_a571a4eb40a7eb56ec327dd661d845c6f}{get\+Sequence\+Sizes}} () const
+\item 
+\mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590}{Sequence\+Type}} \mbox{\hyperlink{classFastaParser_a450b92b6789e3291cd2e6036e4e5c433}{get\+Sequence\+Type}} (const std\+::string \&sequence)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classFastaParser_a0ef338e11f489524d2db03562f6786c7}{file\+Path}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classFastaParser_aa4100a539323c0686bbea8fcf00a67e5}{headers}}
+\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{classFastaParser_a219ac9b912529a02e176e1842119dd79}{sequences}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classFastaParser_a8881c4ce715c870b0b59705637dd8590}\label{classFastaParser_a8881c4ce715c870b0b59705637dd8590} 
+\index{FastaParser@{FastaParser}!SequenceType@{SequenceType}}
+\index{SequenceType@{SequenceType}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{SequenceType}{SequenceType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590}{Fasta\+Parser\+::\+Sequence\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DNA@{DNA}!FastaParser@{FastaParser}}\index{FastaParser@{FastaParser}!DNA@{DNA}}}\Hypertarget{classFastaParser_a8881c4ce715c870b0b59705637dd8590a1890a1c2c4d17ea9f5a81f3057b36e55}\label{classFastaParser_a8881c4ce715c870b0b59705637dd8590a1890a1c2c4d17ea9f5a81f3057b36e55} 
+DNA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RNA@{RNA}!FastaParser@{FastaParser}}\index{FastaParser@{FastaParser}!RNA@{RNA}}}\Hypertarget{classFastaParser_a8881c4ce715c870b0b59705637dd8590ac51be27126f41988e02c8e489a9592a5}\label{classFastaParser_a8881c4ce715c870b0b59705637dd8590ac51be27126f41988e02c8e489a9592a5} 
+RNA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AA@{AA}!FastaParser@{FastaParser}}\index{FastaParser@{FastaParser}!AA@{AA}}}\Hypertarget{classFastaParser_a8881c4ce715c870b0b59705637dd8590a18df40da5c89f81ae6e84cd88d2cdaf2}\label{classFastaParser_a8881c4ce715c870b0b59705637dd8590a18df40da5c89f81ae6e84cd88d2cdaf2} 
+AA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNKNOWN@{UNKNOWN}!FastaParser@{FastaParser}}\index{FastaParser@{FastaParser}!UNKNOWN@{UNKNOWN}}}\Hypertarget{classFastaParser_a8881c4ce715c870b0b59705637dd8590ae8b03d25a90632cd7269aff50c715aa1}\label{classFastaParser_a8881c4ce715c870b0b59705637dd8590ae8b03d25a90632cd7269aff50c715aa1} 
+UNKNOWN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classFastaParser_adb76fd007f42456abacbbaa0e4e00e5b}\label{classFastaParser_adb76fd007f42456abacbbaa0e4e00e5b} 
+\index{FastaParser@{FastaParser}!FastaParser@{FastaParser}}
+\index{FastaParser@{FastaParser}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{FastaParser()}{FastaParser()}}
+{\footnotesize\ttfamily Fasta\+Parser\+::\+Fasta\+Parser (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFastaParser_a51374ddd5438917ac643182dc59c6ca1}\label{classFastaParser_a51374ddd5438917ac643182dc59c6ca1} 
+\index{FastaParser@{FastaParser}!countSequences@{countSequences}}
+\index{countSequences@{countSequences}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{countSequences()}{countSequences()}}
+{\footnotesize\ttfamily size\+\_\+t Fasta\+Parser\+::count\+Sequences (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classFastaParser_a81167409534b2fb07356961b003334bf}\label{classFastaParser_a81167409534b2fb07356961b003334bf} 
+\index{FastaParser@{FastaParser}!getReverseComplement@{getReverseComplement}}
+\index{getReverseComplement@{getReverseComplement}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{getReverseComplement()}{getReverseComplement()}}
+{\footnotesize\ttfamily std\+::string Fasta\+Parser\+::get\+Reverse\+Complement (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sequence }\end{DoxyParamCaption})}
+
+\Hypertarget{classFastaParser_abd28223c8bcf24fe9e83b4f905510661}\label{classFastaParser_abd28223c8bcf24fe9e83b4f905510661} 
+\index{FastaParser@{FastaParser}!getSequences@{getSequences}}
+\index{getSequences@{getSequences}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{getSequences()}{getSequences()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::string $>$ \& Fasta\+Parser\+::get\+Sequences (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classFastaParser_a571a4eb40a7eb56ec327dd661d845c6f}\label{classFastaParser_a571a4eb40a7eb56ec327dd661d845c6f} 
+\index{FastaParser@{FastaParser}!getSequenceSizes@{getSequenceSizes}}
+\index{getSequenceSizes@{getSequenceSizes}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{getSequenceSizes()}{getSequenceSizes()}}
+{\footnotesize\ttfamily std\+::vector$<$ size\+\_\+t $>$ Fasta\+Parser\+::get\+Sequence\+Sizes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\Hypertarget{classFastaParser_a450b92b6789e3291cd2e6036e4e5c433}\label{classFastaParser_a450b92b6789e3291cd2e6036e4e5c433} 
+\index{FastaParser@{FastaParser}!getSequenceType@{getSequenceType}}
+\index{getSequenceType@{getSequenceType}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{getSequenceType()}{getSequenceType()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590}{Fasta\+Parser\+::\+Sequence\+Type}} Fasta\+Parser\+::get\+Sequence\+Type (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sequence }\end{DoxyParamCaption})}
+
+Détermine le type biologique d\textquotesingle{}une séquence (ADN, ARN, protéique ou inconnu). Sequence\+Type Enum indiquant le type de séquence (DNA, RNA, AA, UNKNOWN) \Hypertarget{classFastaParser_a404a8a76af7506436ee4f9b2ed5976f3}\label{classFastaParser_a404a8a76af7506436ee4f9b2ed5976f3} 
+\index{FastaParser@{FastaParser}!loadFile@{loadFile}}
+\index{loadFile@{loadFile}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{loadFile()}{loadFile()}}
+{\footnotesize\ttfamily bool Fasta\+Parser\+::load\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\Hypertarget{classFastaParser_a6443857ed1ae1cf4a6a94e23eb3472be}\label{classFastaParser_a6443857ed1ae1cf4a6a94e23eb3472be} 
+\index{FastaParser@{FastaParser}!validateFasta@{validateFasta}}
+\index{validateFasta@{validateFasta}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{validateFasta()}{validateFasta()}}
+{\footnotesize\ttfamily bool Fasta\+Parser\+::validate\+Fasta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classFastaParser_a0ef338e11f489524d2db03562f6786c7}\label{classFastaParser_a0ef338e11f489524d2db03562f6786c7} 
+\index{FastaParser@{FastaParser}!filePath@{filePath}}
+\index{filePath@{filePath}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{filePath}{filePath}}
+{\footnotesize\ttfamily std\+::string Fasta\+Parser\+::file\+Path\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classFastaParser_aa4100a539323c0686bbea8fcf00a67e5}\label{classFastaParser_aa4100a539323c0686bbea8fcf00a67e5} 
+\index{FastaParser@{FastaParser}!headers@{headers}}
+\index{headers@{headers}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{headers}{headers}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Fasta\+Parser\+::headers\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classFastaParser_a219ac9b912529a02e176e1842119dd79}\label{classFastaParser_a219ac9b912529a02e176e1842119dd79} 
+\index{FastaParser@{FastaParser}!sequences@{sequences}}
+\index{sequences@{sequences}!FastaParser@{FastaParser}}
+\doxysubsubsection{\texorpdfstring{sequences}{sequences}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Fasta\+Parser\+::sequences\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{FastaParser_8h}{Fasta\+Parser.\+h}}\item 
+\mbox{\hyperlink{FastaParser_8cpp}{Fasta\+Parser.\+cpp}}\end{DoxyCompactItemize}

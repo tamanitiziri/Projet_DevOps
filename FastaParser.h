@@ -39,12 +39,17 @@ public:
 
     //fonction qui recuepre le type de ma sequence (adn , arn , aa, unknown) en utilisant enummeration
     enum SequenceType {
-        DNA,  // ADN
-        RNA,  // ARN
-        AA,   // Acides aminés
-        UNKNOWN  // Type inconnu
+        DNA,  
+        RNA,  
+        AA,   
+        UNKNOWN  
     };
      //getter de la sequence type
+     /**
+ *  Détermine le type biologique d'une séquence (ADN, ARN, protéique ou inconnu).
+ *  SequenceType Enum indiquant le type de séquence (DNA, RNA, AA, UNKNOWN)
+ *
+ */
     SequenceType getSequenceType(const std::string& sequence);
 
 };

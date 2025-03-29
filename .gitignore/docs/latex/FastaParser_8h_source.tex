@@ -1,0 +1,58 @@
+\doxysection{Fasta\+Parser.\+h}
+\hypertarget{FastaParser_8h_source}{}\label{FastaParser_8h_source}\mbox{\hyperlink{FastaParser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FASTAPARSER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FASTAPARSER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Inclusion\ des\ bibliothèques\ standard\ nécessaires}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}\ \ \textcolor{comment}{//\ Pour\ utiliser\ std::string\ (manipulation\ des\ chaînes\ de\ caractères)}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}\ \ \textcolor{comment}{//\ Pour\ utiliser\ std::vector\ (tableaux\ dynamiques)}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Définition\ de\ la\ classe\ FastaParser\ pour\ analyser\ des\ fichiers\ au\ format\ FASTA}}
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFastaParser}{FastaParser}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ Membres\ privés\ :\ uniquement\ accessibles\ à\ l'intérieur\ de\ la\ classe}}
+\DoxyCodeLine{00012\ \ \ \ \ std::string\ \mbox{\hyperlink{classFastaParser_a0ef338e11f489524d2db03562f6786c7}{filePath}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Chemin\ vers\ le\ fichier\ FASTA}}
+\DoxyCodeLine{00013\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{classFastaParser_aa4100a539323c0686bbea8fcf00a67e5}{headers}};\ \ \ \ \textcolor{comment}{//\ Liste\ des\ headers\ (lignes\ commençant\ par\ '>')}}
+\DoxyCodeLine{00014\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{classFastaParser_a219ac9b912529a02e176e1842119dd79}{sequences}};\ \ \textcolor{comment}{//\ Liste\ des\ séquences\ correspondantes}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{comment}{//\ Ajoute\ cette\ méthode\ pour\ récupérer\ toutes\ les\ séquences}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//std::vector<std::string>\ getSequences()\ const;}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Constructeur\ :\ initialise\ un\ objet\ avec\ le\ chemin\ du\ fichier}}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classFastaParser}{FastaParser}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classFastaParser_a0ef338e11f489524d2db03562f6786c7}{filePath}});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Charge\ le\ fichier\ FASTA,\ extrait\ les\ headers\ et\ séquences}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastaParser_a404a8a76af7506436ee4f9b2ed5976f3}{loadFile}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{comment}{//\ Valide\ si\ le\ fichier\ FASTA\ respecte\ le\ format\ standard}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastaParser_a6443857ed1ae1cf4a6a94e23eb3472be}{validateFasta}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//\ Retourne\ le\ nombre\ de\ séquences\ présentes\ dans\ le\ fichier\ FASTA}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classFastaParser_a51374ddd5438917ac643182dc59c6ca1}{countSequences}}();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Retourne\ le\ complément\ inverse\ d'une\ séquence\ ADN\ donnée}}
+\DoxyCodeLine{00032\ \ \ \ \ std::string\ \mbox{\hyperlink{classFastaParser_a81167409534b2fb07356961b003334bf}{getReverseComplement}}(\textcolor{keyword}{const}\ std::string\&\ sequence);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ récupérer\ toutes\ les\ séquences}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::string>\&\ \mbox{\hyperlink{classFastaParser_abd28223c8bcf24fe9e83b4f905510661}{getSequences}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00036\ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ calculer\ la\ taille\ des\ séquences\ }}
+\DoxyCodeLine{00038\ \ \ \ \ std::vector<size\_t>\ \mbox{\hyperlink{classFastaParser_a571a4eb40a7eb56ec327dd661d845c6f}{getSequenceSizes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//fonction\ qui\ recuepre\ le\ type\ de\ ma\ sequence\ (adn\ ,\ arn\ ,\ aa,\ unknown)\ en\ utilisant\ enummeration}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590}{SequenceType}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590a1890a1c2c4d17ea9f5a81f3057b36e55}{DNA}},\ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590ac51be27126f41988e02c8e489a9592a5}{RNA}},\ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590a18df40da5c89f81ae6e84cd88d2cdaf2}{AA}},\ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590ae8b03d25a90632cd7269aff50c715aa1}{UNKNOWN}}\ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \textcolor{comment}{//getter\ de\ la\ sequence\ type}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classFastaParser_a8881c4ce715c870b0b59705637dd8590}{SequenceType}}\ \mbox{\hyperlink{classFastaParser_a450b92b6789e3291cd2e6036e4e5c433}{getSequenceType}}(\textcolor{keyword}{const}\ std::string\&\ sequence);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ Fin\ des\ include\ guards\ pour\ éviter\ les\ inclusions\ multiples\ du\ fichier}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FASTAPARSER\_H}}
+
+\end{DoxyCode}
