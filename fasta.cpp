@@ -1,3 +1,5 @@
+//compiler: ++ -std=c++20 -o fasta fasta.cpp FastaParser.cpp sequenceParser.cpp fastqFileRreader.cpp FormatFileDetector.cpp
+//execute: ./fasta
 #include "FastaParser.h"
 #include "fastqFileRreader.h"
 #include "FormatFileDetector.h"
