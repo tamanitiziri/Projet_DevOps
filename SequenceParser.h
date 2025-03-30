@@ -1,5 +1,8 @@
 #ifndef SEQUENCEPARSER_H
 #define SEQUENCEPARSER_H
+#include <vector>   // Pour std::vector
+#include <string>   // Pour std::string
+#include <cstddef> // Pour std::size_t
 
 class SequenceParser {
     protected:
@@ -11,7 +14,7 @@ class SequenceParser {
     
         // Méthodes à implémenter par les classes filles
         virtual bool loadFile()  = 0;
-        virtual bool validate()  = 0;
+        virtual bool validate() const  = 0;
         
         // Getters standards
         virtual const std::vector<std::string>& getHeaders() const = 0;

@@ -47,9 +47,11 @@ bool FastaParser::loadFile(){
     //}
 }
 
-bool FastaParser::validate() {
- if(!loadFile ()) {
-        return false; // Retourne false si le chargement du fichier échoue
+bool FastaParser::validate() const {
+ // 1. Vérifier que les données sont chargées
+ if (sequences.empty() || headers.empty()) {
+    throw std::runtime_error("Data not loaded. Call loadFile() first.");
+    return false;  //chargement des donneés des donner a echoué
  }
  else{
     for (const auto& header : headers) {

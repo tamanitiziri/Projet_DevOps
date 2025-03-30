@@ -1,8 +1,6 @@
 #ifndef FASTAPARSER_H
 #define FASTAPARSER_H
-
-
-// Inclusion des bibliothèques standard nécessaires
+#include <fstream> // Pour lire un fichier
 #include <string>  // Pour utiliser std::string (manipulation des chaînes de caractères)
 #include <vector>  // Pour utiliser std::vector (tableaux dynamiques)
 #include "SequenceParser.h" // Ensure the correct case matches the file name
@@ -12,8 +10,6 @@ class FastaParser : public SequenceParser{
 private:
     // Membres privés : uniquement accessibles à l'intérieur de la classe
     std::string filePath;                // Chemin vers le fichier FASTA
-    //std::vector<std::string> headers;    // Liste des headers (lignes commençant par '>')
-    //std::vector<std::string> sequences;  // Liste des séquences correspondantes
     
 public:
     // Constructeur : initialise un objet avec le chemin du fichier
@@ -23,7 +19,7 @@ public:
     bool loadFile() override ;
 
     // Valide si le fichier FASTA respecte le format standard
-    bool validate() override;
+    bool validate() const override;
 
     // Retourne le nombre de séquences présentes dans le fichier FASTA
     size_t countSequences() const override {return sequences.size();};
