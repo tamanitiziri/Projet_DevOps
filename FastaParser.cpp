@@ -1,3 +1,5 @@
+//g++ -std=c++20 -o fasta fasta.cpp FastaParser.cpp sequenceParser.cpp fastqFileRreader.cpp FormatFileDetector.cpp
+//./fasta
 #include "FastaParser.h"
 #include "SequenceParser.h"
 #include <fstream>
@@ -14,7 +16,11 @@ bool FastaParser::loadFile(){
         std::cerr << "Erreur : Impossible d'ouvrir le fichier " << filePath << std::endl;
         return false;
     }
-   
+
+    headers.clear();
+    sequences.clear();
+    isStreamMode = false;
+
     std::string line, currentSequence;
     bool expectingHeader = true;
 
@@ -46,6 +52,51 @@ bool FastaParser::loadFile(){
     //    std::cout << "Séquence : " << seq << std::endl;  // Affiche la séquence lue
     //}
 }
+
+//methode pour valider le fichier
+bool FastaParser::processSequences(
+    const std::function<void(const std::string& header,
+                             const std::string& sequence)>& callback) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Erreur : Impossible d'ouvrir le fichier " << filePath << std::endl;
+        return false;
+    }
+    
+    isStreamMode = true;
+    std::string line, currentSequence, currentHeader;
+    bool inSequence = false;
+
+    while(std::getline(file, line)) {
+        if (line.empty()) continue;
+
+        if (line[0] == '>' || line[0] == ';') {
+            if (inSequence) {
+
+                callback(currentHeader, currentSequence);
+                currentSequence.clear();
+            }
+            currentHeader = line;
+            inSequence = true;
+        } else if (inSequence) {
+            currentSequence += line;
+        }else{
+            std::cerr << "Erreur: Le fichier ne commence pas par un header (> ou ;)" << std::endl;
+            file.close();
+            return false;
+        }
+    }
+
+    //traiter la dernière séquence
+    if(inSequence && !currentSequence.empty()){
+        callback(currentHeader, currentSequence);
+    }
+    file.close();
+    return true;
+    
+}
+
+
 
 bool FastaParser::validate() const {
  // 1. Vérifier que les données sont chargées

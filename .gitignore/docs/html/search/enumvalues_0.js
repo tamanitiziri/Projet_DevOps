@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['aa_0',['AA',['../classFastaParser.html#a8881c4ce715c870b0b59705637dd8590a18df40da5c89f81ae6e84cd88d2cdaf2',1,'FastaParser']]]
+  ['aa_0',['AA',['../classSequenceParser.html#af4a10e665ff9f369088ccf71a4311ca1a05feb9a3cfd1d061e49152a2b3360d34',1,'SequenceParser']]]
 ];

@@ -4,7 +4,7 @@
 #include <vector>
 #include <stdexcept>  // Pour utiliser std::invalid_argument (gestion des erreurs)
 
-// doxygen documentation
+
 /**
  * Classe SuffixArray
  * 
@@ -15,9 +15,9 @@ class SuffixArray{
     private:
    // std::string text;  //ma chaine de caractere
     std::string text;  //mon motif 
-    std::vector<int> suffixArray;   // ma table SA
-    std::vector<int> lcpArray;     // ma table lcp
-    std::vector<int> SuffixArrayEquivalent; // ma table SA equivalent ******
+    std::vector<size_t> suffixArray;   // ma table SA
+    std::vector<size_t> lcpArray;     // ma table lcp
+    std::vector<size_t> SuffixArrayEquivalent; // ma table SA equivalent ******
 
     //contruire SA
     void buildSuffixArray();
@@ -42,8 +42,8 @@ class SuffixArray{
       * upperBound: retourne la position du premier suffixe dans la table des suffixes qui est strictement supérieur à un motif donné.
     
     */
-    int lowerBound(const std::string& text) const;
-    int upperBound(const std::string& text) const;
+    size_t lowerBound(const std::string& text) const;
+    size_t upperBound(const std::string& text) const;
 
 
     public:
@@ -62,25 +62,25 @@ class SuffixArray{
     /**
      * Retourne la table des suffixes
      */
-    const std::vector<int>& getSuffixArray() const;
+    const std::vector<size_t>& getSuffixArray() const;
 
     //getter de lcp
-    const std::vector<int>& getLcpArray() const;
+    const std::vector<size_t>& getLcpArray() const;
 
     //getter de SA equivalent **********************
     /**
      * Retourne la table des suffixes équivalents.
      */
-    const std::vector<int>& getSuffixArrayEquivalent() const;
+    const std::vector<size_t>& getSuffixArrayEquivalent() const;
 
     /** rechrache d'un facteur dans ma table SA (avce une methode déchotomique) */
     bool search(const std::string& factor) const;
 
     /**  Retourne le nombre d'occurrences du motif */
-    int countOccurrences(const std::string& motif) const;
+    size_t countOccurrences(const std::string& motif) const;
 
      /**  Retourne le i-ème facteur de longueur k de la séquence */
-     std::string getFactor(int i, int k) const;
+     std::string getFactor(size_t i, size_t k) const;
 
 
 };

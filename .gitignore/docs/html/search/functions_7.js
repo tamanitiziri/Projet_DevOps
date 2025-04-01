@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['testfastaparser_0',['testFastaParser',['../fasta_8cpp.html#a9fd9c729c7ce12f08b8c1e1ae8e4dae1',1,'fasta.cpp']]]
+  ['main_0',['main',['../fasta_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;fasta.cpp'],['../fastaq_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;fastaq.cpp'],['../main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4',1,'main():&#160;main.cpp']]]
 ];

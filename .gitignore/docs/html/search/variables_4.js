@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['text_0',['text',['../classSuffixArray.html#a8c24725c82331798b7f2da16cb9833e2',1,'SuffixArray']]]
+  ['qualityscores_0',['qualityScores',['../classFastqFileReader.html#a65dc0090bfc5cb0d4e471b7489e21489',1,'FastqFileReader']]]
 ];

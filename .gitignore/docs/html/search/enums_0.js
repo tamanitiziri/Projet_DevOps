@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sequencetype_0',['SequenceType',['../classFastaParser.html#a8881c4ce715c870b0b59705637dd8590',1,'FastaParser']]]
+  ['format_0',['Format',['../classFormatFileDetector.html#a7b367c5496a1a5a060a52ff1d2281d10',1,'FormatFileDetector']]]
 ];

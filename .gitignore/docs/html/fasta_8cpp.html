@@ -75,28 +75,56 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="FastaParser_8h_source.html">FastaParser.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fastqFileRreader_8h_source.html">fastqFileRreader.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="FormatFileDetector_8h_source.html">FormatFileDetector.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="SequenceParser_8h_source.html">SequenceParser.h</a>&quot;</code><br />
+<code>#include &lt;fstream&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for fasta.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="fasta_8cpp__incl.png" border="0" usemap="#afasta_8cpp" alt=""/></div>
 <map name="afasta_8cpp" id="afasta_8cpp">
-<area shape="rect" title=" " alt="" coords="95,5,177,31"/>
-<area shape="rect" href="FastaParser_8h.html" title=" " alt="" coords="24,79,131,104"/>
-<area shape="poly" title=" " alt="" coords="128,33,97,70,93,67,124,29"/>
-<area shape="rect" title=" " alt="" coords="155,79,235,104"/>
-<area shape="poly" title=" " alt="" coords="148,29,179,67,175,70,144,33"/>
-<area shape="rect" title=" " alt="" coords="5,152,64,177"/>
-<area shape="poly" title=" " alt="" coords="73,106,51,142,46,139,68,103"/>
-<area shape="rect" title=" " alt="" coords="89,152,151,177"/>
-<area shape="poly" title=" " alt="" coords="87,103,108,139,104,142,82,106"/>
+<area shape="rect" title=" " alt="" coords="426,5,509,31"/>
+<area shape="rect" href="FastaParser_8h.html" title=" " alt="" coords="414,79,521,104"/>
+<area shape="poly" title=" " alt="" coords="470,31,470,65,465,65,465,31"/>
+<area shape="rect" title=" " alt="" coords="348,152,422,177"/>
+<area shape="poly" title=" " alt="" coords="452,33,427,53,405,80,394,109,389,138,384,137,388,108,400,77,423,49,448,29"/>
+<area shape="rect" href="SequenceParser_8h.html" title=" " alt="" coords="137,152,273,177"/>
+<area shape="poly" title=" " alt="" coords="426,25,363,30,291,41,227,58,204,68,189,80,182,93,182,108,193,139,188,140,177,109,177,92,184,77,201,64,226,53,290,36,363,25,426,19"/>
+<area shape="rect" href="fastqFileRreader_8h.html" title=" " alt="" coords="199,79,339,104"/>
+<area shape="poly" title=" " alt="" coords="437,33,315,76,314,71,435,28"/>
+<area shape="rect" href="FormatFileDetector_8h.html" title=" " alt="" coords="548,152,707,177"/>
+<area shape="poly" title=" " alt="" coords="483,29,607,141,603,145,479,33"/>
+<area shape="rect" title=" " alt="" coords="596,79,676,104"/>
+<area shape="poly" title=" " alt="" coords="496,28,597,71,595,76,494,33"/>
+<area shape="rect" title=" " alt="" coords="700,79,777,104"/>
+<area shape="poly" title=" " alt="" coords="510,28,687,74,686,79,509,33"/>
+<area shape="poly" title=" " alt="" coords="456,106,411,145,407,141,453,102"/>
+<area shape="rect" title=" " alt="" coords="381,225,440,251"/>
+<area shape="poly" title=" " alt="" coords="476,103,485,138,486,158,481,178,465,202,444,220,441,216,461,198,476,176,481,158,480,138,470,105"/>
+<area shape="rect" title=" " alt="" coords="128,225,191,251"/>
+<area shape="poly" title=" " alt="" coords="469,105,460,142,451,162,436,179,408,200,382,212,356,218,330,221,274,221,205,228,205,222,274,215,330,215,355,213,380,207,405,195,433,175,446,159,455,140,464,104"/>
+<area shape="poly" title=" " alt="" coords="426,107,262,151,260,146,425,101"/>
+<area shape="poly" title=" " alt="" coords="239,175,369,220,367,225,237,180"/>
+<area shape="poly" title=" " alt="" coords="200,179,177,215,172,212,195,176"/>
+<area shape="rect" title=" " alt="" coords="215,225,286,251"/>
+<area shape="poly" title=" " alt="" coords="215,176,238,212,233,215,210,179"/>
+<area shape="poly" title=" " alt="" coords="289,102,356,142,353,147,286,106"/>
+<area shape="poly" title=" " alt="" coords="279,103,304,137,338,175,384,215,381,219,334,179,300,140,275,106"/>
+<area shape="poly" title=" " alt="" coords="199,102,90,120,43,135,26,144,15,154,9,167,10,178,19,189,33,199,73,215,116,226,114,231,71,220,31,203,15,193,6,180,3,166,11,150,23,140,41,130,89,115,199,97"/>
+<area shape="poly" title=" " alt="" coords="261,106,226,144,223,140,257,103"/>
+<area shape="rect" title=" " alt="" coords="26,152,112,177"/>
+<area shape="poly" title=" " alt="" coords="238,107,116,150,114,145,236,102"/>
+<area shape="poly" title=" " alt="" coords="594,180,454,225,452,220,592,175"/>
 </map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9fd9c729c7ce12f08b8c1e1ae8e4dae1" id="r_a9fd9c729c7ce12f08b8c1e1ae8e4dae1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fasta_8cpp.html#a9fd9c729c7ce12f08b8c1e1ae8e4dae1">testFastaParser</a> (const std::string &amp;filePath, const std::string &amp;description)</td></tr>
-<tr class="separator:a9fd9c729c7ce12f08b8c1e1ae8e4dae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5936196f03788d79c97cc68d85e8a0" id="r_afe5936196f03788d79c97cc68d85e8a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fasta_8cpp.html#afe5936196f03788d79c97cc68d85e8a0">testParser</a> (const std::string &amp;filePath, const std::string &amp;description)</td></tr>
+<tr class="separator:afe5936196f03788d79c97cc68d85e8a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97" id="r_a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="fasta_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -129,14 +157,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9fd9c729c7ce12f08b8c1e1ae8e4dae1" name="a9fd9c729c7ce12f08b8c1e1ae8e4dae1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fd9c729c7ce12f08b8c1e1ae8e4dae1">&#9670;&#160;</a></span>testFastaParser()</h2>
+<a id="afe5936196f03788d79c97cc68d85e8a0" name="afe5936196f03788d79c97cc68d85e8a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe5936196f03788d79c97cc68d85e8a0">&#9670;&#160;</a></span>testParser()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void testFastaParser </td>
+          <td class="memname">void testParser </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>filePath</em>, </td>

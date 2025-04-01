@@ -1,0 +1,40 @@
+\doxysection{Sequence\+Parser.\+h}
+\hypertarget{SequenceParser_8h_source}{}\label{SequenceParser_8h_source}\mbox{\hyperlink{SequenceParser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SEQUENCEPARSER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SEQUENCEPARSER\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}\ \ \ \textcolor{comment}{//\ Pour\ std::vector}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}\ \ \ \textcolor{comment}{//\ Pour\ std::string}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cstddef>}\ \textcolor{comment}{//\ Pour\ std::size\_t}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSequenceParser}{SequenceParser}}\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00009\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{classSequenceParser_ac70228d511a211a1980e77d0b96c5275}{sequences}};}
+\DoxyCodeLine{00010\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{classSequenceParser_ad62ce4ff5f592648ddf25699409d8497}{headers}};\ \ }
+\DoxyCodeLine{00011\ \ \ \ \ \ \ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classSequenceParser_aaf70f4161c3c73dec0d99390ef5afbf0}{\string~SequenceParser}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00014\ \ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Méthodes\ à\ implémenter\ par\ les\ classes\ filles}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSequenceParser_a91546b4f8b55cfe952971a6e7a52a411}{loadFile}}()\ \ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSequenceParser_a6db3bda020302b56969a5f296f64eedf}{validate}}()\ \textcolor{keyword}{const}\ \ =\ 0;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Getters\ standards}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ \mbox{\hyperlink{classSequenceParser_ac884ac96914238385c95b1acc6075be6}{getHeaders}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ \mbox{\hyperlink{classSequenceParser_ab7fb46a142743d802a39badc30a2d50a}{getSequences}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classSequenceParser_a19f29209e9f4a321afe9b39b96bfee2a}{countSequences}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Méthodes\ communes\ implémentées\ ici}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classSequenceParser_a163f6fa586a17432189d112bfa3faf15}{getReverseComplement}}(\textcolor{keyword}{const}\ std::string\&\ seq)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classSequenceParser_af4a10e665ff9f369088ccf71a4311ca1}{SequenceType}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSequenceParser_af4a10e665ff9f369088ccf71a4311ca1a4f77e47106c5d621535c3d938c0c0f79}{DNA}},\ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSequenceParser_af4a10e665ff9f369088ccf71a4311ca1a968c0b1cbc7181439a208fccbc498566}{RNA}},\ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSequenceParser_af4a10e665ff9f369088ccf71a4311ca1a05feb9a3cfd1d061e49152a2b3360d34}{AA}},\ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSequenceParser_af4a10e665ff9f369088ccf71a4311ca1ad713f2c5c2b900f9775d95a9a9d2b50d}{UNKNOWN}}\ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSequenceParser_af4a10e665ff9f369088ccf71a4311ca1}{SequenceType}}\ \mbox{\hyperlink{classSequenceParser_afbb8468e655d125ecb32f5b5b3515868}{getSequenceType}}(\textcolor{keyword}{const}\ std::string\&\ sequence)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ \ \ \ \ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

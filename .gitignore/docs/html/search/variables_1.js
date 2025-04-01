@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['headers_0',['headers',['../classFastaParser.html#aa4100a539323c0686bbea8fcf00a67e5',1,'FastaParser']]]
+  ['headers_0',['headers',['../classSequenceParser.html#ad62ce4ff5f592648ddf25699409d8497',1,'SequenceParser']]]
 ];

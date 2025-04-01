@@ -1,6 +1,7 @@
 \doxysection{Fasta\+Parser.\+cpp File Reference}
 \hypertarget{FastaParser_8cpp}{}\label{FastaParser_8cpp}\index{FastaParser.cpp@{FastaParser.cpp}}
 {\ttfamily \#include "{}Fasta\+Parser.\+h"{}}\newline
+{\ttfamily \#include "{}Sequence\+Parser.\+h"{}}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$algorithm$>$}\newline
@@ -13,22 +14,3 @@ Include dependency graph for Fasta\+Parser.\+cpp\+:
 \includegraphics[width=350pt]{FastaParser_8cpp__incl}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-std\+::string \mbox{\hyperlink{FastaParser_8cpp_af9a86a049de2565ff43176b614c2304c}{get\+Reverse\+Complement}} (const std\+::string \&sequence)
-\end{DoxyCompactItemize}
-
-
-\doxysubsection{Function Documentation}
-\Hypertarget{FastaParser_8cpp_af9a86a049de2565ff43176b614c2304c}\label{FastaParser_8cpp_af9a86a049de2565ff43176b614c2304c} 
-\index{FastaParser.cpp@{FastaParser.cpp}!getReverseComplement@{getReverseComplement}}
-\index{getReverseComplement@{getReverseComplement}!FastaParser.cpp@{FastaParser.cpp}}
-\doxysubsubsection{\texorpdfstring{getReverseComplement()}{getReverseComplement()}}
-{\footnotesize\ttfamily std\+::string get\+Reverse\+Complement (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{sequence }\end{DoxyParamCaption})}
-
-Cette fonction prend une séquence validée (via {\ttfamily validate\+Fasta()}) et retourne son complément inverse, ères non-\/\+ADN/\+ARN sont rejetés par {\ttfamily validate\+Fasta()} avant l\textquotesingle{}appel. la structure Build\+Sequence\+Table est une fonction lambda qui retourne un tableau de caractères de 128 éléments qui contient les compléments de chaque base. Instance statique constexpr de la table générée par {\ttfamily build\+Complement\+Table()}(permet de calculer la table lors de la compilation). Optimisée pour \+:
-\begin{DoxyItemize}
-\item Accès O(1) via indexation ASCII
-\item Usage en mémoire read-\/only static constexpr auto build\+Complement\+Table = \mbox{[}\mbox{]}() est avec une liste de capture vide \mbox{[}\mbox{]}() càd une acces uniquement aux variables statiques et globales. et aucun parametre d\textquotesingle{}entrée warning Ne pas appeler cette fonction sur des séquences non validées (acides aminés ou données brutes). ce code doit etre exécuter avec une version de c++ 20 ou supérieur 
-\end{DoxyItemize}

@@ -4,13 +4,15 @@
 #include <string>  // Pour utiliser std::string (manipulation des chaînes de caractères)
 #include <vector>  // Pour utiliser std::vector (tableaux dynamiques)
 #include "SequenceParser.h" // Ensure the correct case matches the file name
+#include <functional> // Pour utiliser std::function
 
 // Définition de la classe FastaParser pour analyser des fichiers au format FASTA
 class FastaParser : public SequenceParser{
 private:
     // Membres privés : uniquement accessibles à l'intérieur de la classe
     std::string filePath;                // Chemin vers le fichier FASTA
-    
+    mutable bool isStreamMode = false; 
+
 public:
     // Constructeur : initialise un objet avec le chemin du fichier
     explicit FastaParser(const std::string& filePath);
@@ -37,7 +39,11 @@ public:
     const std::vector<std::string>& getHeaders() const override {return headers;}
 
     
-    //SequenceType getSequenceType(const std::string& sequence);
+    //methode de streaming 
+    bool processSequences(
+        const std::function<void(const std::string& header,
+                                 const std::string& sequence)>& callback);
+    
 
 };
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['validatefasta_0',['validateFasta',['../classFastaParser.html#a6443857ed1ae1cf4a6a94e23eb3472be',1,'FastaParser']]]
+  ['rna_0',['RNA',['../classSequenceParser.html#af4a10e665ff9f369088ccf71a4311ca1a968c0b1cbc7181439a208fccbc498566',1,'SequenceParser']]]
 ];

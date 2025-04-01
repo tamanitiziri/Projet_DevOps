@@ -1,0 +1,58 @@
+\doxysection{fastq\+File\+Rreader.\+h}
+\hypertarget{fastqFileRreader_8h_source}{}\label{fastqFileRreader_8h_source}\mbox{\hyperlink{fastqFileRreader_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FASTQFILEREADER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FASTQFILEREADER\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{SequenceParser_8h}{SequenceParser.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFastqFileReader}{FastqFileReader}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSequenceParser}{SequenceParser}}\ \{}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ std::string\ \mbox{\hyperlink{classFastqFileReader_a4cc5256d8bf72ee7cd5f68b155346d7c}{filePath}};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{mutable}\ std::vector<std::string>\ \mbox{\hyperlink{classFastqFileReader_a65dc0090bfc5cb0d4e471b7489e21489}{qualityScores}};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{mutable}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastqFileReader_af5adcd3cbd441e3a504edddd2f134440}{isStreamMode}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastqFileReader_af25f9ab6ca16c7a5963e1f17cf9b1b18}{isSequenceStart}}(\textcolor{keyword}{const}\ std::string\&\ line)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00025\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastqFileReader_a95eca4edfe69248820867e7c2ec31e8a}{isQualitySeparator}}(\textcolor{keyword}{const}\ std::string\&\ line)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classFastqFileReader_a7f3a9f7f329f3b9ccee6cb6edec04a0b}{parseQualityScores}}(std::ifstream\&\ file,\ \textcolor{keywordtype}{size\_t}\ sequenceLength);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classFastqFileReader}{FastqFileReader}}(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{classFastqFileReader_a4cc5256d8bf72ee7cd5f68b155346d7c}{filePath}});}
+\DoxyCodeLine{00044\ \mbox{\hyperlink{classFastqFileReader_af6925a0f04a9cbb978eebed12dbd2477}{FastqFileReader}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFastqFileReader}{FastqFileReader}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00045\ \mbox{\hyperlink{classFastqFileReader}{FastqFileReader}}\&\ \mbox{\hyperlink{classFastqFileReader_a7107f5b9c5ba903cec00cb171dd0e852}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classFastqFileReader}{FastqFileReader}}\&)\ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//methode\ pour\ charger\ le\ fichier}}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastqFileReader_af9cb109066ea91fb24458d0f054c5b81}{loadFile}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00050\ \textcolor{comment}{//methode\ pour\ valider\ le\ fichier}}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastqFileReader_ad6f71a367243fe9faa43ecdf75e75865}{validate}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//getters}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ \mbox{\hyperlink{classFastqFileReader_a3b094f89bec10735d68ef9208fc90e08}{getHeaders}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00055\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ \mbox{\hyperlink{classFastqFileReader_a4ae6c2e817c8ff3329f4d0b8e62a05cc}{getSequences}}()\ \textcolor{keyword}{const\ override}\ ;}
+\DoxyCodeLine{00056\ \textcolor{comment}{//methode\ pour\ recuperer\ les\ scores\ de\ qualite}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{const}\ std::vector<std::string>\&\ \mbox{\hyperlink{classFastqFileReader_a3eff34f7f86f84dab8a536de6906b2e4}{getQualityScores}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classFastqFileReader_a022fe31f8369a3e39def4f0e56db5daa}{countSequences}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ Nouvelle\ méthode\ stream}}
+\DoxyCodeLine{00068\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classFastqFileReader_a2624fa50e72c623ef66e91f1c3939ce3}{processSequences}}(}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ std::string\&\ header,\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ sequence,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ quality)>\&\ callback);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

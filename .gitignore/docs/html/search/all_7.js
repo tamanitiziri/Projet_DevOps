@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lcparray_0',['lcpArray',['../classSuffixArray.html#a067572f787290e2d77ecabec607ee802',1,'SuffixArray']]],
-  ['loadfile_1',['loadFile',['../classFastaParser.html#a404a8a76af7506436ee4f9b2ed5976f3',1,'FastaParser']]],
-  ['lowerbound_2',['lowerBound',['../classSuffixArray.html#a1046a3acae28268d81cefb3b565a1e50',1,'SuffixArray']]]
+  ['isqualityseparator_0',['isQualitySeparator',['../classFastqFileReader.html#a95eca4edfe69248820867e7c2ec31e8a',1,'FastqFileReader']]],
+  ['issequencestart_1',['isSequenceStart',['../classFastqFileReader.html#af25f9ab6ca16c7a5963e1f17cf9b1b18',1,'FastqFileReader']]],
+  ['isstreammode_2',['isStreamMode',['../classFastqFileReader.html#af5adcd3cbd441e3a504edddd2f134440',1,'FastqFileReader']]]
 ];

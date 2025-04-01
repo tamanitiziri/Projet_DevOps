@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lcparray_0',['lcpArray',['../classSuffixArray.html#a067572f787290e2d77ecabec607ee802',1,'SuffixArray']]]
+  ['isstreammode_0',['isStreamMode',['../classFastqFileReader.html#af5adcd3cbd441e3a504edddd2f134440',1,'FastqFileReader']]]
 ];

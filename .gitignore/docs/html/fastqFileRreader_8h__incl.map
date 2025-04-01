@@ -1,0 +1,17 @@
+<map id="fastqFileRreader.h" name="fastqFileRreader.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="169,5,309,31"/>
+<area shape="rect" id="Node000002" href="$SequenceParser_8h.html" title=" " alt="" coords="66,79,202,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,33,164,73,161,69,221,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,68,177"/>
+<area shape="poly" id="edge6_Node000001_Node000003" title=" " alt="" coords="170,27,139,34,109,44,80,60,56,80,47,93,42,108,38,138,33,138,37,107,43,91,52,77,77,55,107,40,138,29,169,22"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="202,152,261,177"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="241,31,235,138,230,138,236,31"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="277,79,351,104"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="253,29,294,67,290,71,249,33"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="375,79,461,104"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="269,28,377,71,375,76,267,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,106,65,146,62,141,117,102"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="151,102,206,141,203,146,148,106"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="99,152,169,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="137,104,137,138,131,138,131,104"/>
+</map>

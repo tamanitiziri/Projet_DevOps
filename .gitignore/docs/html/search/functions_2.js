@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fastaparser_0',['FastaParser',['../classFastaParser.html#adb76fd007f42456abacbbaa0e4e00e5b',1,'FastaParser']]]
+  ['detect_0',['detect',['../classFormatFileDetector.html#a44518465c3f24584f7a1aceef1d8c23d',1,'FormatFileDetector']]]
 ];
