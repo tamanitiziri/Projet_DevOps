@@ -97,12 +97,6 @@ bool FastqFileReader::validate() const {
            throw std::runtime_error("Header invalide : (ligne " + std::to_string(i + 1) + "): " + headers[i]);
             
         }
-        //2 verifier l'existance de la sequence qualité
-        //std::string expected_separator = "+"; //+ headers[i].substr(1);
-        //if (qualityScores[i].empty() || qualityScores[i][0] != '+') {
-        //    throw std::runtime_error("Séparateur '+' manquant pour la séquence " + std::to_string(i+1)+ " avec le header \"" + headers[i] + "\"");
-        
-       // }
 
         //3. Vérifier si la séquence de qualité est plus longue que la séquence moléculaire
         if (qualityScores[i].length() > sequences[i].length()) {
@@ -125,6 +119,21 @@ bool FastqFileReader::validate() const {
             // Afficher un avertissement avec le header correspondant et la position du caractère invalide
             throw std::runtime_error("Caractère invalide dans la séquence avec le header \"" + headers[i] + "\"" "à la position " + std::to_string(sequences[i].find_first_not_of(validDNA))); 
             return false;
+        }
+
+        // Vérification des caractères de la séquence de qualité
+        
+        auto it = qualityScores[i].begin();
+        for (; it != qualityScores[i].end(); ++it) {
+            if (*it < '!' || *it > '~') break;  // Caractère invalide trouvé
+        }
+        if (it != qualityScores[i].end()) {
+            throw std::runtime_error(
+                "Score de qualité invalide (header '" + headers[i] + "')\n"
+                "→ Caractère fautif: '" + std::string(1, *it) 
+                + "' (ASCII " + std::to_string(static_cast<int>(*it)) 
+                + ") à la position " + std::to_string(it - qualityScores[i].begin() + 1)
+            );
         }
     }
     return true;
@@ -168,7 +177,9 @@ bool FastqFileReader::isSequenceStart(const std::string& line) const {
 }
 
 bool FastqFileReader::isQualitySeparator(const std::string& line) const {
-    return !line.empty() && line[0] == '+';
+    if(line.empty()) return false;
+    // soit exatement un '+' soit un '+' suivi de la meme sequence que le header
+    return (line == "+") || (line[0] == '+' && line.substr(1) == headers.back().substr(1));    
 }
 
 void FastqFileReader::parseQualityScores(std::ifstream& file, size_t seqLength) {
@@ -177,6 +188,8 @@ void FastqFileReader::parseQualityScores(std::ifstream& file, size_t seqLength) 
         qualityScores.push_back(quality);
     }
 }
+
+
 
 
 

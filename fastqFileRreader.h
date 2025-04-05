@@ -33,6 +33,12 @@ private:
      */
     void parseQualityScores(std::ifstream& file, size_t sequenceLength);
 
+    /**
+    *@note Vérifie si les scores de qualité fichier FASTQ sont valide
+    *@return true si la lettre est valide et false sinon
+    */
+
+
 
 public:
 explicit FastqFileReader(const std::string& filePath);
@@ -71,6 +77,7 @@ bool processSequences(
                            const std::string& quality)>& callback);
 
 
+                        
 };
 
 

@@ -13,8 +13,8 @@
  */
 class SuffixArray{
     private:
-   // std::string text;  //ma chaine de caractere
-    std::string text;  //mon motif 
+   
+    std::string text;  //mon text
     std::vector<size_t> suffixArray;   // ma table SA
     std::vector<size_t> lcpArray;     // ma table lcp
     std::vector<size_t> SuffixArrayEquivalent; // ma table SA equivalent ******
@@ -33,7 +33,7 @@ class SuffixArray{
      * au lieu de comparer les suffixes de la chaîne de caractères
      * cette table est utilisée pour la recherche de motifs dans la chaîne d'origine
      */
-    void buildSuffixArrayEquivalent();
+   
 
     /**
       * Fonctions pour la recherche d'occurrences
@@ -67,11 +67,7 @@ class SuffixArray{
     //getter de lcp
     const std::vector<size_t>& getLcpArray() const;
 
-    //getter de SA equivalent **********************
-    /**
-     * Retourne la table des suffixes équivalents.
-     */
-    const std::vector<size_t>& getSuffixArrayEquivalent() const;
+    
 
     /** rechrache d'un facteur dans ma table SA (avce une methode déchotomique) */
     bool search(const std::string& factor) const;
@@ -79,9 +75,20 @@ class SuffixArray{
     /**  Retourne le nombre d'occurrences du motif */
     size_t countOccurrences(const std::string& motif) const;
 
-     /**  Retourne le i-ème facteur de longueur k de la séquence */
+     /**  
+      * Retourne le i-ème facteur de longueur k de la séquence 
+      * */
      std::string getFactor(size_t i, size_t k) const;
 
+     /**
+      * Retourne les positions d'occurrences du motif dans la séquence
+      * @param motif Le motif à rechercher
+      * @return Un vecteur contenant les positions d'occurrences du motif
+      * @note Cette méthode utilise la recherche binaire pour trouver les occurrences du motif dans la séquence.
+      * Rôle : Trouve les positions d'un motif spécifique dans la séquence.
+      */
+    std::vector<size_t> findOccurrences(const std::string& motif) const;
+    
 
 };
 

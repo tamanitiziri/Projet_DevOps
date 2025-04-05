@@ -22,14 +22,14 @@ class SequenceParser {
         virtual size_t countSequences() const = 0;
     
         // Méthodes communes implémentées ici
-        std::string getReverseComplement(const std::string& seq) const;
+        static std::string getReverseComplement(const std::string& seq);
         enum SequenceType {
             DNA,  
             RNA,  
             AA,   
             UNKNOWN  
         };
-        SequenceType getSequenceType(const std::string& sequence) const;
+        static SequenceType getSequenceType(const std::string& sequence);
     };
 
 #endif

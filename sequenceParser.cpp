@@ -6,7 +6,7 @@
 
 //le type de ma sequence (adn , arn , aa, unknown) en utilisant enummeration
 
-SequenceParser::SequenceType SequenceParser::getSequenceType(const std::string& sequence) const {
+SequenceParser::SequenceType SequenceParser::getSequenceType(const std::string& sequence) {
     // Définir les caractères valides pour l'ADN, l'ARN et les acides aminés + code d'ambiguïté.
     const std::string validDNA = "ACGTacgtRYKMSWBDHVNrykmswbdhvn";
     const std::string validRNA = "ACGUacguRYKMSWBDHVNrykmswbdhvn";
@@ -63,7 +63,7 @@ const std::vector<std::string>& SequenceParser::getSequences() const {
 std::string getReverseComplement(const std::string& sequence);
 
 
-std::string SequenceParser::getReverseComplement(const std::string& sequence) const {
+std::string SequenceParser::getReverseComplement(const std::string& sequence) {
     SequenceType type = getSequenceType(sequence);
     if (type == SequenceType::AA || type == SequenceType::UNKNOWN) {
         std::cerr << "Erreur : La séquence n'est pas de type ADN ou ARN." << std::endl;
