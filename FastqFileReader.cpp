@@ -3,7 +3,7 @@
  */
 
 
-#include "fastqFileRreader.h"
+#include "FastqFileRreader.h"
 #include "SequenceParser.h"
 #include <stdexcept>
 #include <algorithm>

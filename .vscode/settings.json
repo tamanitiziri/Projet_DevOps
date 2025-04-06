@@ -113,6 +113,7 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp",
-    "codecvt": "cpp"
+    "codecvt": "cpp",
+    "unordered_set": "cpp"
   }
 }

@@ -1,16 +1,27 @@
 #include "SuffixArray.h"
 #include <algorithm>  // Pour utiliser std::sort>
 
+// initialiser le constructeur et definir ma un character vide $ a la fin de mon motif 
+/*
+SuffixArray::SuffixArray(const std::string& inputtext, bool buildSA) : text(inputtext + '$') {
+   if (buildSA){
+    buildSuffixArray(); // chrono
+    //buildLcpArray();
+    //buildSuffixArrayEquivalent();
+   }else{
+         buildSuffixArrayEquivalent(); // chrono
+         //buildLcpArray();
+   }
+}
+*/
 // Constructeur
 SuffixArray::SuffixArray(const std::string& inputText) : text(inputText + '$') {
     buildSuffixArray(); // Construire la table des suffixes
     buildLcpArray();    // Construire la table LCP (facultatif)
 }
 
-/**
- * @brief Fonction de comparaison personnalisée pour trier les suffixes
- * sans utiliser substr qui de compléxité O(n)
- */
+
+// methode de ma table SA ********************************
 bool compareSuffixes(size_t i, size_t j, const std::string& s) {
     const size_t n = s.length();
     while (i < n && j < n) {
@@ -19,11 +30,11 @@ bool compareSuffixes(size_t i, size_t j, const std::string& s) {
         ++i;
         ++j;
     }
-    return j != n; // i a atteint la fin → j est plus long, donc i < j
+    return j != n; // i a attesize_t la fin → j est plus long, donc i < j
 }
 
 
-void SuffixArray::buildSuffixArray() {
+void SuffixArray::buildSuffixArray(){
     size_t n = text.length();
     std::vector<size_t> indices(n);
 
@@ -33,35 +44,16 @@ void SuffixArray::buildSuffixArray() {
     }
 
     // Trier les indices en utilisant la fonction de comparaison personnalisée
-    /**
-     * Ici la fonction de comparaison personnalisée compare les suffixes de la chaîne d'origine
-     * au lieu de comparer les suffixes de la chaîne de caractères
-     * elle est de complexité O(nlogn) càd la diffrence avec l'utilisation e sorte sns modifie la fonction lambda
-     * est que la fonction de comparaison personnalisée compare les suffixes de la chaîne d'origine
-     * au lieu de comparer les suffixes de la chaîne de caractères qui d'une complexité O(n^2logn)   
-     * 
-     */
     std::sort(indices.begin(), indices.end(), [this](size_t i, size_t j) {
         return compareSuffixes(i, j, text);
     });
 
     // Mettre à jour la table des suffixes
-    SuffixArrayEquivalent = indices;
-}
+    suffixArray = indices;
 
- /**
- * @brief Construit le tableau LCP (Longest Common Prefix) de manière optimisée
- * 
- * @details Cette implémentation utilise :
- * 1. Une heuristique clé exploitant les propriétés du suffix array
- * 2. Une parallélisation partielle pour les grands génomes
- * 
- * Complexité : O(n) dans le pire cas, où n est la longueur du texte
- * 
- * @note L'heuristique principale repose sur le fait que LCP[i] ≥ LCP[i-1] - 1
- * ce qui permet d'éviter des comparaisons redondantes de caractères.
- */
-void SuffixArray::buildLcpArray() {
+} 
+ //* construire ma table  lcp *****************************
+ void SuffixArray::buildLcpArray() {
     const size_t n = text.length();
     lcpArray.resize(n); // Alloue l'espace pour le tableau LCP
     std::vector<size_t> rank(n); // Tableau de rang inverse
@@ -108,17 +100,15 @@ void SuffixArray::buildLcpArray() {
         lcpArray[rank[i]] = k; // Stocke la longueur du LCP
     }
 }
+    //methode gitter de SA 
+    const std::vector<size_t>& SuffixArray::getSuffixArray() const{
+        return suffixArray;
+    }
 
-
- //methode gitter de SA 
-const std::vector<size_t>& SuffixArray::getSuffixArray() const{
-    return suffixArray;
-}
-
-//get ma table lcp
-const std::vector<size_t>& SuffixArray::getLcpArray() const{
-    return lcpArray;
-}
+    //get ma table lcp
+    const std::vector<size_t>& SuffixArray::getLcpArray() const{
+        return lcpArray;
+    }
     
    //chercher un motif dans la table des suffixes (recherghe dichotomique)
 bool SuffixArray::search(const std::string& motif) const{
@@ -151,33 +141,28 @@ bool SuffixArray::search(const std::string& motif) const{
          left = mid + 1; // chercher dans la partie droite
         } else{
             right = mid - 1; // chercher dans la partie gauche
-        }
-        
+        } 
     }
 
     return false; // motif non trouvé 
 }
 
-// ***************Amelioration de la fonction de ta table SA************************************
-//l'amelioration ici est de construire une table SA equivalent
-//cette table est construite en utilisant la fonction de comparaison personnalisée qui compare les suffixes de la chaîne d'origine
-//au lieu de comparer les suffixes de la chaîne de caractères
-//cette table est utilisée pour la recherche de motifs dans la chaîne d'origine
 
 
 //get lowerBound
-/**
- * cette fonction retourne la position du premier suffixe dans la table des suffixes qui est supérieur ou égal à un motif donné.
- * elle est de complexité O(logn)
- */
 size_t  SuffixArray::lowerBound(const std::string& motif) const{
+    if (motif.empty() || motif.length() > text.length()) return suffixArray.size();
+    
     size_t  left = 0;
     size_t  right = suffixArray.size()-1; //-1 pour ne pas calculer le $ a la fin de mon motif
     size_t  result = suffixArray.size(); //initialiser le resultat a la taille de ma table SA
     
+    
     while(left <= right){
         size_t  mid = left + (right - left) / 2; //calculer le milieu
-        size_t  cmp =text.compare(suffixArray[mid], motif.length(), motif); //comparer le motif avec le suffixe de milieu
+        
+        size_t compare_len = std::min(motif.length(), text.length() - suffixArray[mid]);
+            int  cmp =text.compare(suffixArray[mid], compare_len, motif, 0, compare_len); //comparer le motif avec le suffixe de milieu
 
         if(cmp >= 0){
             result = mid; //stocker le resultat
@@ -191,18 +176,17 @@ size_t  SuffixArray::lowerBound(const std::string& motif) const{
 }
 
 //get upperBound
-/**
- * cette fonction retourne la position du premier suffixe dans la table des suffixes qui est strictement supérieur à un motif donné.
- * elle est de complexité O(logn)
- */
 size_t SuffixArray::upperBound(const std::string& motif) const{
-        size_t  left = 0;
-        size_t  right = suffixArray.size()-1; //-1 pour ne pas calculer le $ a la fin de mon motif
-        size_t  result = suffixArray.size(); //initialiser le resultat a la taille de ma table SA
+    size_t  left = 0;
+    size_t  right = suffixArray.size()-1; //-1 pour ne pas calculer le $ a la fin de mon motif
+    size_t  result = suffixArray.size(); //initialiser le resultat a la taille de ma table SA
         
         while(left <= right){
             size_t  mid = left + (right - left) / 2; //calculer le milieu
-            size_t  cmp =text.compare(suffixArray[mid], motif.length(), motif); //comparer le motif avec le suffixe de milieu
+
+            // Vérification des limites pour éviter le débordement
+            size_t compare_len = std::min(motif.length(), text.length() - suffixArray[mid]);
+            int  cmp =text.compare(suffixArray[mid], compare_len, motif, 0, compare_len); //comparer le motif avec le suffixe de milieu
     
             if(cmp > 0){
                 result = mid; //stocker le resultat
@@ -217,13 +201,6 @@ size_t SuffixArray::upperBound(const std::string& motif) const{
 
 
 // Retourne le nombre d'occurrences du motif
-/**
- * cette fonction retourne le nombre d'occurrences du motif dans la chaîne d'origine.
- * elle est de complexité O(logn)
- * l'utlisation des deux fonctions lowerBound et upperBound permet de calculer le nombre d'occurrences du motif permet 
- * de calculer le nombre d'occurrences du motif dans la chaîne d'origine en utilisant la table des suffixes.
- * la complexité spaciale est de O(1) car on utilise la table des suffixes déja calculer pour calculer le nombre d'occurrences du motif.
- */
 size_t SuffixArray::countOccurrences(const std::string& text) const {
     if (text.empty()) {
         return 0;
@@ -240,7 +217,8 @@ std::string SuffixArray::getFactor(size_t i, size_t k) const {
     }
     return text.substr(i, k);
 }
- // Fonction pour trouver les occurrences d'un motif dans la chaîne d'origine
+
+// Fonction pour trouver les occurrences d'un motif dans la chaîne d'origine
 std::vector<size_t> SuffixArray::findOccurrences(const std::string& pattern) const {
     std::vector<size_t> occurrences;
     const size_t m = pattern.length();
