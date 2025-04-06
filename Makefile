@@ -1,19 +1,43 @@
-# Définition des variables
-CXX = g++                # Le compilateur C++
-CXXFLAGS = -std=c++17 -Wall -I./include # Les options de compilation (C++17 et tous les avertissements)
-LDFLAGS =                 # Options de linkage
-SRC = src/main.cpp src/FastaParser.cpp # Les fichiers source dans le dossier src/
-OBJ = $(SRC:.cpp=.o)      # Les fichiers objets générés (.o)
-EXEC = fasta_api          # Nom du programme exécutable
+# Compilateur et options
+CXX = g++
+CXXFLAGS = -std=c++20 -Wall -I./include -fopenmp
+LDFLAGS = -fopenmp
 
-# Règle pour compiler le programme
-$(EXEC): $(OBJ)
-	$(CXX) $(OBJ) -o $(EXEC) $(LDFLAGS)
+# Répertoires
+SRC_DIR = src
+BUILD_DIR = build
+DATA_DIR = data
 
-# Règle pour compiler les fichiers source en objets
-%.o: %.cpp
+# Fichiers sources
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
+EXEC = mapper
+
+# Règle par défaut
+all: $(BUILD_DIR) $(EXEC)
+
+# Création du répertoire build
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+# Règle générique pour la compilation
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Règle pour nettoyer les fichiers objets et l'exécutable
+# Lien final
+$(EXEC): $(OBJS) tests/mapper.cpp
+	$(CXX) $(CXXFLAGS) $^ -o $@ $(LDFLAGS)
+
+# Nettoyage
 clean:
-	rm -f $(OBJ) $(EXEC)
+	rm -rf $(BUILD_DIR) $(EXEC)
+
+# Exécution avec paramètres
+run:
+	@if [ -z "$(ref)" ] || [ -z "$(reads)" ]; then \
+		echo "Usage: make run ref=<fichier_reference.fasta> reads=<fichier_reads.fastq> k=<taille_kmer> step=<pas>"; \
+		exit 1; \
+	fi
+	./$(EXEC) $(DATA_DIR)/$(ref) $(DATA_DIR)/$(reads) $(k) $(step)
+
+.PHONY: all clean run

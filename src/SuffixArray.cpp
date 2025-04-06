@@ -1,19 +1,6 @@
 #include "SuffixArray.h"
 #include <algorithm>  // Pour utiliser std::sort>
 
-// initialiser le constructeur et definir ma un character vide $ a la fin de mon motif 
-/*
-SuffixArray::SuffixArray(const std::string& inputtext, bool buildSA) : text(inputtext + '$') {
-   if (buildSA){
-    buildSuffixArray(); // chrono
-    //buildLcpArray();
-    //buildSuffixArrayEquivalent();
-   }else{
-         buildSuffixArrayEquivalent(); // chrono
-         //buildLcpArray();
-   }
-}
-*/
 // Constructeur
 SuffixArray::SuffixArray(const std::string& inputText) : text(inputText + '$') {
     buildSuffixArray(); // Construire la table des suffixes
