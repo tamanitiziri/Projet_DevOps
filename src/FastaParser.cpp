@@ -1,126 +1,171 @@
+//g++ -std=c++20 -o fasta fasta.cpp FastaParser.cpp sequenceParser.cpp fastqFileRreader.cpp FormatFileDetector.cpp
+//./fasta
 #include "FastaParser.h"
+#include "SequenceParser.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <array>
 
 FastaParser::FastaParser(const std::string& filePath) : filePath(filePath) {}
 
-void FastaParser::loadFile() {
+bool FastaParser::loadFile() {
     std::ifstream file(filePath);
     if (!file.is_open()) {
         std::cerr << "Erreur : Impossible d'ouvrir le fichier " << filePath << std::endl;
-        return;
+        return false;
     }
 
+    headers.clear();
+    sequences.clear();
+    isStreamMode = false;
+
     std::string line, currentSequence;
+    bool expectingHeader = true;
+    size_t spaceWarnings = 0;
+
     while (std::getline(file, line)) {
         if (line.empty()) continue;
-        if (line[0] == '>' || line[0] == ';') { // ligne d'entête de séquence
-            headers.push_back(line);
+
+        if (line[0] == '>' || line[0] == ';') {
+            // Gestion du header
             if (!currentSequence.empty()) {
                 sequences.push_back(currentSequence);
                 currentSequence.clear();
             }
+            headers.push_back(line);
+            expectingHeader = false;
         } else {
-            currentSequence += line; // Ajoute la ligne de séquence à la séquence courante
+            if (expectingHeader) {
+                std::cerr << "Erreur: Le fichier ne commence pas par un header (> ou ;)" << std::endl;
+                return false;
+            }
+
+            // Suppression des espaces dans la ligne de séquence
+            std::string cleanLine;
+            for (char c : line) {
+                if (!isspace(c)) {
+                    cleanLine += c;
+                } else if (spaceWarnings < 5) { // Limite les avertissements
+                    spaceWarnings++;
+                    std::cerr << "Avertissement : Espace ignoré dans la séquence (header: " 
+                              << headers.back() << ")\n";
+                }
+            }
+            currentSequence += cleanLine;
         }
     }
-    if (!currentSequence.empty()) {
-        sequences.push_back(currentSequence); // Ajoute la dernière séquence
-    }
-    file.close();
 
-    // Affiche toutes les séquences lues
-    //for (const auto& seq : sequences) {
-    //    std::cout << "Séquence : " << seq << std::endl;  // Affiche la séquence lue
-    //}
+    if (!currentSequence.empty()) {
+        sequences.push_back(currentSequence);
+    }
+
+    if (spaceWarnings >= 5) {
+        std::cerr << "..." << spaceWarnings - 5 << " avertissements supplémentaires sur les espaces\n";
+    }
+
+    file.close();
+    return true;
 }
 
-bool FastaParser::validateFasta() {
-    loadFile();
-
- if (sequences.empty()) {
-        std::cerr << "Aucune séquence valide trouvée." << std::endl;
+bool FastaParser::processSequences(
+    const std::function<void(const std::string& header,
+                             const std::string& sequence)>& callback) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
+        std::cerr << "Erreur : Impossible d'ouvrir le fichier " << filePath << std::endl;
         return false;
     }
+    
+    isStreamMode = true;
+    std::string line, currentSequence, currentHeader;
+    bool inSequence = false;
+    size_t spaceWarnings = 0;
 
-else{
+    while(std::getline(file, line)) {
+        if (line.empty()) continue;
+
+        if (line[0] == '>' || line[0] == ';') {
+            if (inSequence) {
+                callback(currentHeader, currentSequence);
+                currentSequence.clear();
+            }
+            currentHeader = line;
+            inSequence = true;
+        } else if (inSequence) {
+            // Nettoyage des espaces en streaming
+            for (char c : line) {
+                if (!isspace(c)) {
+                    currentSequence += c;
+                } else if (spaceWarnings < 5) {
+                    spaceWarnings++;
+                    std::cerr << "Avertissement : Espace ignoré dans la séquence (header: " 
+                              << currentHeader << ")\n";
+                }
+            }
+        } else {
+            std::cerr << "Erreur: Le fichier ne commence pas par un header (> ou ;)" << std::endl;
+            file.close();
+            return false;
+        }
+    }
+
+    if(inSequence && !currentSequence.empty()){
+        callback(currentHeader, currentSequence);
+    }
+
+    if (spaceWarnings >= 5) {
+        std::cerr << "..." << spaceWarnings - 5 << " avertissements supplémentaires sur les espaces\n";
+    }
+
+    file.close();
+    return true;
+}
+
+
+
+bool FastaParser::validate() const {
+ // 1. Vérifier que les données sont chargées
+ if (sequences.empty() || headers.empty()) {
+    throw std::runtime_error("Pas de données chargées. Veuillez d'abord charger le fichier. verifier que le contiens une entête et une séquence");
+    return false;  //chargement des donneés des donner a echoué
+ }
+ else{
+    for (const auto& header : headers) {
+        if (header.empty() || (header[0] != '>' && header[0] != ';')) {
+            std::cerr << "Header invalide : " << header << std::endl;
+            return false;
+        }
+    }
     // Définir les caractères valides (ACGT + ambiguïtés).
-    const std::string validChars = "ACGTacgtRYKMSWBDHVNrykmswbdhvn";
+    //const std::string validChars = "ACGTacgtRYKMSWBDHVNrykmswbdhvn";
+    const std::string validDNA = "ACGTacgtRYKMSWBDHVNrykmswbdhvn";
+    const std::string validRNA = "ACGUacguRYKMSWBDHVNrykmswbdhvn";
+    const std::string validAA = "ACDEFGHIKLMNPQRSTVWYacdefghiklmnpqrstvwy";
 
     for (size_t lineNum = 0; lineNum < sequences.size(); ++lineNum) {
-        const std::string& sequence = sequences[lineNum];
-        bool isConsensus = false;
+        SequenceType type = getSequenceType(sequences[lineNum]);
+        if(type == SequenceType::UNKNOWN){
 
-        for (size_t pos = 0; pos < sequence.length(); ++pos) {
-            char c = sequence[pos];
-            if (validChars.find(c) == std::string::npos) {
-                // Caractère invalide trouvé.
-                std::cerr << "Caractère invalide trouvé à la ligne " 
-                          << lineNum + 1 << ", position " << pos + 1 
-                          << " : '" << c << "'" << std::endl;
-                return false; // Retourne false si un caractère invalide est trouvé.
-            }
+         //const std::string& sequence = sequences[lineNum];
 
-            // Vérifiez si c'est une lettre d'ambiguïté.
-            if (std::string("RYKMSWBDHVNrykmswbdhvn").find(c) != std::string::npos) {
-                isConsensus = true;
-            }
-        }
+         for (size_t pos = 0; pos < sequences[lineNum].length(); ++pos) {
+                char c = sequences[lineNum][pos]; //acces direct à ma variable original
+                if (validDNA.find(c) == std::string::npos && 
+                    validRNA.find(c) == std::string::npos && 
+                    validAA.find(c) == std::string::npos) {
+                         std::cerr << "Caractère invalide '" << c << "' dans la séquence " 
+                                    << lineNum + 1 << " position " << pos + 1 << std::endl;
+                    return false; // Retourne false si un caractère invalide est trouvé.
+                 }
 
-        // Afficher le type de séquence.
-        if (isConsensus) {
-            std::cout << "Type de séquence " << lineNum + 1 << " : Séquence consensus." << std::endl;
-        } else {
-            std::cout << "Type de séquence " << lineNum + 1 << " : Séquence simple." << std::endl;
+             }
+        
         }
     }
-
-    return true; // Retourne true si toutes les séquences sont valides.
-
+ }
+    return true; // Retourne true si le fichier FASTA est valide.
 }
-}
-
-
-
-size_t FastaParser::countSequences() {
-        return sequences.size(); // Retourne le nombre de séquences
-}
-
-std::vector<std::string> FastaParser::getSequences() const {
-    return sequences;
-}
-
-
-std::string FastaParser::getReverseComplement(const std::string& sequence) {
-    // Complément de chaque base
-    std::string complement = "";
-    for (char base : sequence) 
-       {
-        if (base == 'A') {
-            complement += 'T';
-        } else if (base == 'T') {
-            complement += 'A';
-        } else if (base == 'C') {
-            complement += 'G';
-        } else if (base == 'G') {
-            complement += 'C';
-        } else {
-            // Gérer les caractères non valides (si nécessaire)
-            complement += 'N';  // N pour un base inconnue
-        }
-    }
-    
-    // Récupère toutes les séquences du fichier
-        //std::vector<std::string> sequences = parser.getSequences();
-    
-
-    // Inverser la séquence complémentaire
-    std::reverse(complement.begin(), complement.end());
-    
-    return complement;
-}
-
 // la taille des séquences
 
 std::vector<size_t> FastaParser::getSequenceSizes() const {
