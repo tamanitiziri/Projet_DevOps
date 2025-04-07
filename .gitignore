@@ -11,3 +11,4 @@
 #ignorer le repertoir build et docs
 build/
 docs/
+rapport/
