@@ -1,7 +1,7 @@
 # Fasta API
 
 ## Description
-Ce projet est une API conçue pour manipuler et analyser des fichiers biologiques au format FASTA et FASTQ. Il inclut des fonctionnalités telles que la lecture de fichiers, la détection de formats, l'indexation de k-mers, et le mappage des séquences reads avec une autre séquence de génome de référence.
+Ce projet est une API conçue pour manipuler et analyser des fichiers biologiques au format FASTA et FASTQ. Elle inclut des fonctionnalités telles que la lecture de fichiers, la détection de formats, l'indexation de k-mers, et le mappage des séquences reads avec une autre séquence de génome de référence.
 
 ## Structure du Projet
 - **`src/`** : Contient les fichiers source principaux en C++.
@@ -15,12 +15,13 @@ Ce projet est une API conçue pour manipuler et analyser des fichiers biologique
   - **`main.cpp`** : Valide les fonctionnalités de la classe de recherche d'un motif avec une table de suffixes de la classe `SuffixArray`, avec un exemple prêt dans le corps du programme.
   - **`makefile`** : Fichier permettant d'automatiser l'exécution des fichiers de test un à la fois. En tapant `make` seul, il affiche la bonne syntaxe d'exécution.
  
-- **`docs/`** : Documentation générée avec Doxygen.
+- **`doxyfile/`** : Fichier de Doxygen pour générer la documentation avec Doxygen.
+- **`tests/`** : Contient le fichier principal nommé `mapper.cpp`, qui fait appel à l'ensemble des classes pour réaliser un mapping des reads.
 
 ## Prérequis
 - **Compilateur** : GCC avec support pour C++20.
 - **Outils** :
-  - `make` pour la compilation (e.g., `make run ref=mini_genome.fasta reads=test_reads.fastq k=8 step=2` pour l'exécution) sinon tapper make run pour voir la bonne syntaxe d'exécution.
+  - `make` pour la compilation (e.g., `make run ref=mini_genome.fasta reads=test_reads.fastq k=8 step=2` pour l'exécution) sinon tapez `make run` pour voir la bonne syntaxe d'exécution.
   - `doxygen` pour générer la documentation.
 
 ## Installation
