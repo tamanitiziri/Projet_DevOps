@@ -13,7 +13,7 @@ Ce projet est une API conçue pour manipuler et analyser des fichiers biologique
   - **`fastaq.cpp`** : Teste les fonctionnalités de lecture des fichiers FASTQ avec des tests générés automatiquement sans arguments.
   - **`file.cpp`** : Teste les fichiers FASTA fournis dans le cadre de ce projet. Le fichier doit être passé en argument. Pour exécuter ce fichier, il faut passer un fichier FASTA/FASTQ en argument.
   - **`main.cpp`** : Valide les fonctionnalités de la classe de recherche d'un motif avec une table de suffixes de la classe `SuffixArray`, avec un exemple prêt dans le corps du programme.
-  --**`Note`** : Dans le cas où vous avez du mal à exécuter avec `make`, dans l'en-tête de chaque fichier, il y a un exemple de ligne d'exécution qui fonctionne. Cependant, vous devez déposer les fichiers `.h` correspondant au fichier `.cpp` invoqué dans la ligne de compilation dans le même répertoire.
+  - **`Note`** : Dans le cas où vous avez du mal à exécuter avec `make`, dans l'en-tête de chaque fichier, il y a un exemple de ligne d'exécution qui fonctionne. Cependant, vous devez déposer les fichiers `.h` correspondant au fichier `.cpp` invoqué dans la ligne de compilation dans le même répertoire.
   - **`makefile`** : Fichier permettant d'automatiser l'exécution des fichiers de test un à la fois. En tapant `make` seul, il affiche la bonne syntaxe d'exécution.
  
 - **`doxyfile/`** : Fichier de Doxygen pour générer la documentation avec Doxygen.
