@@ -1,0 +1,13 @@
+# Ignorer VSCode
+.vscode/
+
+# Ignorer fichiers compilés
+*.o
+*.out
+
+# Ignorer fichiers temporaires
+*.log
+*.tmp
+#ignorer le repertoir build et docs
+build/
+docs/

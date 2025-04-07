@@ -1,7 +1,0 @@
-<map id="SequenceParser" name="SequenceParser">
-<area shape="rect" id="Node000001" title=" " alt="" coords="77,5,275,231"/>
-<area shape="rect" id="Node000002" href="$classFastaParser.html" title=" " alt="" coords="5,359,163,544"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,245,112,359,107,358,139,243"/>
-<area shape="rect" id="Node000003" href="$classFastqFileReader.html" title=" " alt="" coords="187,279,352,624"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="214,243,223,278,218,279,209,245"/>
-</map>

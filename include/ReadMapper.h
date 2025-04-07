@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include <cstddef> // Pour size_t
+#include <cstddef> 
 
 enum class Strand {
     FORWARD,
@@ -13,7 +13,15 @@ enum class Strand {
     UNKNOWN
 };
 
-struct MappingResult {
+/**
+ * \struct MappingResult
+ * \brief Structure contenant les résultats du mappage
+ * Cette structure inclut des informations telles que la position de référence,
+ * le brin (strand), la confiance, la chaîne CIGAR, la distance d'édition, 
+ * et si le mappage est unique.
+ */ 
+
+ struct MappingResult {
     std::size_t referencePos;
     Strand strand;
     double confidence;
@@ -21,7 +29,15 @@ struct MappingResult {
     int editDistance;
     bool isUnique;
     std::vector<std::size_t> kmerMatches;
-};
+};  
+
+/**
+ * @class ReadMapper
+ * @brief Classe pour mapper des séquences reads sur un génome de référence.
+ *
+ * Cette classe utilise un index de k-mers pour trouver les positions candidates
+ * et évaluer les alignements des séquences reads.
+ */
 
 class ReadMapper {
 public:
