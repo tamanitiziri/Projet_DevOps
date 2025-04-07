@@ -1,5 +1,6 @@
 # Ignorer VSCode
-.vscode/
+
+**/.vscode/
 
 # Ignorer fichiers compilés
 *.o
