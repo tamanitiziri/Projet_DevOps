@@ -24,9 +24,6 @@ class SuffixArray{
     //contruire lcp
     void buildLcpArray();
 
-    //contruire SA equivalent *********************
-    void buildSuffixArrayEquivalent();
-
     // Fonctions pour la recherche d'occurrences
     //documentation de ces deux fonction:
     //lowerBound: retourne la position du premier suffixe dans la table des suffixes qui est supérieur ou égal à un motif donné.
@@ -51,8 +48,6 @@ class SuffixArray{
     //getter de lcp
     const std::vector<size_t>& getLcpArray() const;
 
-    //getter de SA equivalent **********************
-    const std::vector<size_t>& getSuffixArrayEquivalent() const;
 
     //rechrache d'un facteur dans ma table SA (avce une methode déchotomique) 
     bool search(const std::string& factor) const;
@@ -62,7 +57,9 @@ class SuffixArray{
 
      // Retourne le i-ème facteur de longueur k de la séquence
      std::string getFactor(size_t i, size_t k) const;
+
      std::vector<size_t> findOccurrences(const std::string& motif) const;
+
      size_t getReferenceLength() const { return text.length(); }
 
 };
